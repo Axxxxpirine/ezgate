@@ -140,6 +140,7 @@ private struct RulesSettingsView: View {
 
 private struct StatisticsSettingsView: View {
     @Environment(AppModel.self) private var model
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
@@ -151,6 +152,10 @@ private struct StatisticsSettingsView: View {
             .font(.title3.monospacedDigit())
             Text("Statistics are stored locally in SQLite. Session totals are also visible in the menu panel.")
                 .foregroundStyle(.secondary)
+            Button("Open Network Statistics", systemImage: "chart.xyaxis.line") {
+                openWindow(id: "statistics")
+                NSApplication.shared.activate(ignoringOtherApps: true)
+            }
             Spacer()
             Button("Delete All Statistics", role: .destructive) {
                 Task { await model.deleteStatistics() }

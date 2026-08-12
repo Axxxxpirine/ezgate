@@ -35,6 +35,7 @@
 		8A390C262FFA99493F2C40AD /* EZgateCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8AE1BA401A65C305D1CEA771 /* ByteFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */; };
 		8B9A1D326558ECFB3370F830 /* AppIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1EC24A81313C07AE083D2C /* AppIdentity.swift */; };
+		8E89A8D204FD821F57AF99F2 /* StatisticsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1E054CBB26E23ECDE6F493 /* StatisticsDashboardView.swift */; };
 		907AFE29001B389150BDA556 /* EZgateCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94304908CC2CD9CD19BBC3E7 /* NetworkProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6209D730E3272244FFEA5A5A /* NetworkProfile.swift */; };
 		94FF12AE11147C7977B013ED /* StatisticsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75F6DFCF2A128725A8CD04 /* StatisticsStore.swift */; };
@@ -166,6 +167,7 @@
 		8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContextMonitor.swift; sourceTree = "<group>"; };
 		8B246BD45962DDF5467610DB /* EZgateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZgateApp.swift; sourceTree = "<group>"; };
 		961E6A473A8AC2605694986D /* RuleEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEngineTests.swift; sourceTree = "<group>"; };
+		9F1E054CBB26E23ECDE6F493 /* StatisticsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsDashboardView.swift; sourceTree = "<group>"; };
 		A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEngine.swift; sourceTree = "<group>"; };
 		AF0C8531F7149E6762471069 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B4AA151A510288273F29EB34 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				71A0A81A74B1EEF1281766DF /* Resources */,
 				7EF8D85ACB4A501AD95B77B4 /* Services */,
 				20A3E13ACC66F9D3B93395AC /* Settings */,
+				F567840FADB1074A62BFB401 /* Statistics */,
 				0F1EF802A02D961385F93FB5 /* Info.plist */,
 			);
 			path = EZgateApp;
@@ -399,6 +402,14 @@
 				4AD9E72CB0EA3A0D324366D9 /* Storage */,
 			);
 			path = EZgateCore;
+			sourceTree = "<group>";
+		};
+		F567840FADB1074A62BFB401 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				9F1E054CBB26E23ECDE6F493 /* StatisticsDashboardView.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,6 +637,7 @@
 				A65C9AF7A4937D3BD1E236D2 /* OnboardingView.swift in Sources */,
 				1380B57F3620E7CD5BF72BE8 /* RealTrafficProvider.swift in Sources */,
 				FD27D043DC41152A1C16CCDE /* SettingsView.swift in Sources */,
+				8E89A8D204FD821F57AF99F2 /* StatisticsDashboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

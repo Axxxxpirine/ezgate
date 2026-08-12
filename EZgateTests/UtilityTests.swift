@@ -6,6 +6,8 @@ final class UtilityTests: XCTestCase {
         let output = ByteFormatter.string(2_400_000_000)
         XCTAssertFalse(output.isEmpty)
         XCTAssertNotEqual(output, "2400000000")
+        XCTAssertEqual(ByteFormatter.string(0), "0 KB")
+        XCTAssertEqual(ByteFormatter.rate(0), "0 KB/s")
     }
 
     func testNetworkContextMatchesExpensiveProfile() {
