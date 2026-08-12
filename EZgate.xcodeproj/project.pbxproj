@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		035DE1CD7FFC0AA29FAE693F /* MockTrafficProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4667152C3B9E8E9CD9BF8A87 /* MockTrafficProvider.swift */; };
 		050A8EE1C86C626CF86D6ACD /* StatisticsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */; };
 		05993EE676CCE8EDA5063FD7 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40718DF78477C8D828F45E /* Rules.swift */; };
+		088FAB37AF3C685B8A5DC9B9 /* SharedTrafficSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7FCB85D0EE57228AC953C /* SharedTrafficSnapshot.swift */; };
 		0BF6BB9A9FADB79AFCB75FE1 /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9BD710792CE5BD6157571 /* FilterDataProvider.swift */; };
 		0F058BDCBB332A70C43AB3CF /* StatisticsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */; };
 		103D4793F80E21B4820C59EE /* TrafficProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743E589394D046917A9704E /* TrafficProvider.swift */; };
+		1380B57F3620E7CD5BF72BE8 /* RealTrafficProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E7037B79635F5A135D8B8 /* RealTrafficProvider.swift */; };
 		14DECB12125A4B46717C0A34 /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
+		1B3CB1E325DE84CBA65D015B /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DE9202A29401576AF0BF0C /* FilterController.swift */; };
 		2D21F351894200C815B3BC8F /* RuleEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E6A473A8AC2605694986D /* RuleEngineTests.swift */; };
 		333516FD69CAEAA3A4889EE1 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B43107DC026C1DB863907A /* MenuBarContentView.swift */; };
 		3748FAFD56B54E6F6B187053 /* TrafficAggregatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */; };
@@ -140,8 +142,8 @@
 		28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteFormatter.swift; sourceTree = "<group>"; };
 		35753174145562501BF0169A /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
 		38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
+		41DE9202A29401576AF0BF0C /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
 		465F7F0139A37352C9293F7C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
-		4667152C3B9E8E9CD9BF8A87 /* MockTrafficProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrafficProvider.swift; sourceTree = "<group>"; };
 		49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModels.swift; sourceTree = "<group>"; };
 		49B1C7F56E7F41C8CB6FCEEA /* EZgateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZgateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = EZgateNetworkExtension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,7 @@
 		7AF9BD710792CE5BD6157571 /* FilterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataProvider.swift; sourceTree = "<group>"; };
 		817E90B28EDCAD7F6AAB4F3C /* NetworkContextMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContextMatcher.swift; sourceTree = "<group>"; };
 		845623551BBDFFBDE564A174 /* TrafficAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficAggregator.swift; sourceTree = "<group>"; };
+		85F7FCB85D0EE57228AC953C /* SharedTrafficSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTrafficSnapshot.swift; sourceTree = "<group>"; };
 		8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContextMonitor.swift; sourceTree = "<group>"; };
 		8B246BD45962DDF5467610DB /* EZgateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZgateApp.swift; sourceTree = "<group>"; };
 		961E6A473A8AC2605694986D /* RuleEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEngineTests.swift; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 		DC1EC24A81313C07AE083D2C /* AppIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIdentity.swift; sourceTree = "<group>"; };
 		DF75F6DFCF2A128725A8CD04 /* StatisticsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStore.swift; sourceTree = "<group>"; };
 		E04CA29DD8188F378F75DF0E /* TrafficModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficModels.swift; sourceTree = "<group>"; };
+		F04E7037B79635F5A135D8B8 /* RealTrafficProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTrafficProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +279,7 @@
 			children = (
 				B4AA151A510288273F29EB34 /* ProfileStore.swift */,
 				25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */,
+				85F7FCB85D0EE57228AC953C /* SharedTrafficSnapshot.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -299,9 +304,10 @@
 		7EF8D85ACB4A501AD95B77B4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				41DE9202A29401576AF0BF0C /* FilterController.swift */,
 				38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */,
-				4667152C3B9E8E9CD9BF8A87 /* MockTrafficProvider.swift */,
 				8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */,
+				F04E7037B79635F5A135D8B8 /* RealTrafficProvider.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -500,20 +506,25 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					063A9C108D48B37D8FC33EBF = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y8YRK6VPR2;
+						ProvisioningStyle = Automatic;
 					};
 					86192973DD4C548EE1C694AA = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y8YRK6VPR2;
+						ProvisioningStyle = Automatic;
 					};
 					D74E00C42AC2262BDF2764AE = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y8YRK6VPR2;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 063A9C108D48B37D8FC33EBF;
 					};
 					E329FA62CFAC7BFB8396F8A8 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y8YRK6VPR2;
+						ProvisioningStyle = Automatic;
 					};
 					F6E41BE003B8E245B7EB8503 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y8YRK6VPR2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -565,6 +576,7 @@
 				40820E5939C79DAAF43F9969 /* RuleEngine.swift in Sources */,
 				05993EE676CCE8EDA5063FD7 /* Rules.swift in Sources */,
 				BC5055C8E4401107A022EE5B /* SharedRuleSnapshot.swift in Sources */,
+				088FAB37AF3C685B8A5DC9B9 /* SharedTrafficSnapshot.swift in Sources */,
 				050A8EE1C86C626CF86D6ACD /* StatisticsModels.swift in Sources */,
 				94FF12AE11147C7977B013ED /* StatisticsStore.swift in Sources */,
 				650C7E3627F818BDC3831517 /* TrafficAggregator.swift in Sources */,
@@ -599,11 +611,12 @@
 			files = (
 				4C151BC3F1D8E1DCACC442B2 /* AppModel.swift in Sources */,
 				8049E4CCD8440D4E4C9B821B /* EZgateApp.swift in Sources */,
+				1B3CB1E325DE84CBA65D015B /* FilterController.swift in Sources */,
 				74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */,
 				333516FD69CAEAA3A4889EE1 /* MenuBarContentView.swift in Sources */,
-				035DE1CD7FFC0AA29FAE693F /* MockTrafficProvider.swift in Sources */,
 				A13634909CB787F1A76F641D /* NetworkContextMonitor.swift in Sources */,
 				A65C9AF7A4937D3BD1E236D2 /* OnboardingView.swift in Sources */,
+				1380B57F3620E7CD5BF72BE8 /* RealTrafficProvider.swift in Sources */,
 				FD27D043DC41152A1C16CCDE /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -681,9 +694,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y8YRK6VPR2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -914,9 +928,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y8YRK6VPR2;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

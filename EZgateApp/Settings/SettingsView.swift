@@ -39,7 +39,7 @@ private struct GeneralSettingsView: View {
                     Text("1 second").tag(1.0)
                     Text("2 seconds").tag(2.0)
                 }
-                LabeledContent("Data source", value: model.isMockMode ? "Mock Network Data" : "Network Extension")
+                LabeledContent("Data source", value: "Network Extension")
             }
         }
         .formStyle(.grouped)
@@ -182,8 +182,11 @@ private struct AdvancedSettingsView: View {
     var body: some View {
         Form {
             Section("Network Extension") {
-                LabeledContent("Status", value: model.isMockMode ? "Not active — development mode" : "Active")
-                Text("A Developer Team, Network Extension provisioning profiles, code signing, and explicit system approval are required to activate real filtering.")
+                LabeledContent("Status", value: model.filterController.status.label)
+                if !model.filterController.status.isActive {
+                    Button("Install Network Filter") { model.activateFilter() }
+                }
+                Text("macOS requires explicit approval for the signed system extension. EZgate displays only traffic reported by that extension.")
                     .foregroundStyle(.secondary)
             }
             if let error = model.errorMessage {

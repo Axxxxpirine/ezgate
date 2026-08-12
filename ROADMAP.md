@@ -3,7 +3,7 @@
 ## Completed foundation
 
 - native menu bar and Settings scenes
-- mock traffic provider with progressive values
+- real `NEFilterReport` traffic provider with no simulated fallback
 - app list, RX/TX, rates, search, sorting, and icons/fallback
 - per-profile Allow/Block and default policy
 - Normal, Hotspot, and Restrictive profiles
@@ -19,10 +19,7 @@
 
 - add system-extension activation coordinator and explicit onboarding states
 - configure `NEFilterManager` with user-visible error handling
-- implement the data provider's `NEFilterReport` aggregation path
-- aggregate report byte counters by signing/bundle identifier
-- publish compact App Group report snapshots
-- add `RealTrafficProvider` and retain one-click mock selection for development
+- validate the implemented report aggregation and App Group snapshots on a provisioned machine
 - test allow/drop against new and established TCP/UDP flows on a signed development machine
 - resolve app names, executable URLs, icons, PIDs, and helper groups on the appropriate side
 

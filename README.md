@@ -8,7 +8,7 @@ Simple network control for macOS.
 
 EZgate is an open-source, native macOS menu bar utility for understanding which applications use network bandwidth and controlling whether each application may connect. It is built from scratch in Swift and SwiftUI and does not contain code, assets, wording, or proprietary behavior from commercial products.
 
-The current build is an honest developer MVP: the interface, profiles, rules, local persistence, network-context monitoring, and statistics database work with progressively changing mock traffic. A compilable Network Extension system-extension target contains the initial allow/drop path. Activating real filtering still requires Apple signing/provisioning and the remaining report bridge described in `TECHNICAL_FEASIBILITY.md`.
+The current build contains no simulated traffic. A Network Extension system extension enforces allow/drop rules and reports real per-application byte counters to the menu-bar app through a local App Group. macOS will only activate it after valid Apple signing/provisioning and explicit user approval.
 
 ## Features
 
@@ -24,7 +24,7 @@ The current build is an honest developer MVP: the interface, profiles, rules, lo
 - Session and Today totals backed by SQLite
 - Wi-Fi/Ethernet/path-cost monitoring with `NWPathMonitor`
 - Launch-at-login setting using `SMAppService`
-- Clearly labelled `Mock Network Data` developer mode
+- Real traffic only; an inactive extension produces an honest empty state
 - Unit tests for rules, grouping, formatting, context matching, persistence, and statistics
 
 ## Screenshots
@@ -82,7 +82,7 @@ EZgate never asks users to disable SIP, Gatekeeper, or another macOS protection.
 
 ## Privacy
 
-There is no account, cloud, telemetry, or analytics. Mock and future real traffic metadata remain on the Mac. Packet contents are neither needed nor stored. See `PRIVACY.md`.
+There is no account, cloud, telemetry, or analytics. Real traffic metadata remains on the Mac. Packet contents are neither needed nor stored. See `PRIVACY.md`.
 
 ## Architecture
 
@@ -90,9 +90,7 @@ The UI, domain logic, persistence, and filtering target are separated. `RuleEngi
 
 ## Known limitations
 
-- The shipped app selects `MockTrafficProvider`; mock traffic is visibly labelled.
 - Signed activation/configuration of the system extension is not possible without an Apple Developer team and profiles.
-- The `NEFilterReport` App Group bridge and `RealTrafficProvider` are the next real-network milestone.
 - SSID access depends on current macOS privacy authorization; iPhone hotspot identity cannot be guaranteed.
 - Content Filters allow or drop traffic but do not provide general bandwidth shaping.
 - Temporary rules, quotas, domain history, charts, and export are intentionally outside this MVP.

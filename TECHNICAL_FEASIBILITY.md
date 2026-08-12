@@ -6,7 +6,7 @@ Verified against Apple documentation and the macOS 26.5 SDK on 12 August 2026. A
 
 EZgate should use a Network Extension Content Filter packaged as a macOS System Extension. `NEFilterDataProvider` is the public API that can make per-flow allow/drop decisions without a legacy kernel extension. `NWPathMonitor` supplies network-context changes. An App Group carries immutable rule snapshots to the data provider and will carry compact traffic snapshots back to the app. SQLite stores statistics in the app.
 
-The mock MVP can build and run without signing. Real filtering cannot be truthfully enabled without an Apple Developer team, matching provisioning profiles, system-extension activation, filter configuration, and explicit user approval.
+The app can build without signing, but its traffic view remains empty. Real filtering requires an Apple Developer team, matching provisioning profiles, system-extension activation, filter configuration, and explicit user approval.
 
 ## 1. Which macOS API filters connections by application?
 
@@ -24,7 +24,7 @@ The implemented resolver passes the app audit token to Security.framework (`SecC
 
 Yes. `NEFilterReport.bytesInboundCount` and `bytesOutboundCount` expose byte counts. The closed-flow report contains final counts. A verdict can request statistics reports using `statisticsReportFrequency`; `.medium` is documented as approximately once per second, matching the UI target.
 
-This is preferable to peeking at all payload bytes. Peeking would increase overhead and expose content unnecessarily. On macOS, the data provider itself can receive these reports through `handle(_:)`; a separate control provider is not required merely to collect `NEFilterReport` counters. The production App Group report bridge still needs to be completed, so the current app does not claim real RX/TX and displays `Mock Network Data`.
+This is preferable to peeking at all payload bytes. Peeking would increase overhead and expose content unnecessarily. On macOS, the data provider itself receives these reports through `handle(_:)`; a separate control provider is not required merely to collect counters. The implemented accumulator publishes compact, atomic App Group snapshots that `RealTrafficProvider` reads at one-second cadence.
 
 ## 4. Can data be aggregated by bundle identifier?
 
@@ -43,7 +43,7 @@ Direct Developer ID distribution uses `content-filter-provider-systemextension` 
 
 ## 6. Is an Apple Developer account required?
 
-Yes for a functioning Content Filter build. Unsigned/free-team work can compile domain logic and the mock UI, but installing and running the privileged Network Extension requires the Apple Developer Program, registered identifiers/capabilities, signing identities, and profiles.
+Yes for a functioning Content Filter build. An unsigned build can compile domain logic and the UI, but installing and running the privileged Network Extension requires the Apple Developer Program, registered identifiers/capabilities, signing identities, and profiles.
 
 ## 7. Can a Network Extension be distributed outside the Mac App Store?
 
@@ -63,7 +63,7 @@ No certificate, profile, secret, or Team ID is committed.
 
 ## 9. How does local development differ from distribution?
 
-Local unsigned build: compiles all targets and runs the mock UI; cannot install the filter.
+Local unsigned build: compiles all targets and runs the UI with an inactive/empty traffic state; it cannot install the filter.
 
 Development-signed build: uses `content-filter-provider`, a development profile, and user/system approval; `get-task-allow` may affect testing behavior. It must not be treated as representative of Developer ID packaging.
 

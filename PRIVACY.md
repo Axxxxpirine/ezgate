@@ -6,7 +6,7 @@ EZgate is local-first and privacy-first. It has no account, cloud backend, telem
 
 When the signed Network Extension is active, EZgate needs flow metadata such as the source app/process audit token, signing or bundle identifier, flow lifecycle, direction, network context, and byte counters. This metadata exists only to identify the responsible application, apply the selected rule, and calculate usage.
 
-EZgate does not need or persist packet payloads, messages, authentication tokens, or complete URLs. The developer MVP currently uses synthetic traffic and labels it `Mock Network Data`.
+EZgate does not need or persist packet payloads, messages, authentication tokens, or complete URLs. It has no synthetic traffic source: an inactive Network Extension produces no application rows or traffic totals.
 
 ## Data stored
 
@@ -35,4 +35,3 @@ Settings → Statistics → Delete All Statistics removes database rows. Removin
 OSLog categories contain lifecycle and error metadata. EZgate avoids packet contents, tokens, secrets, and full URLs. Identifiers should use privacy annotations unless needed to diagnose a user-requested issue.
 
 Any future telemetry would require an explicit project decision, documentation update, opt-in design, and code review. It must never be introduced silently.
-
