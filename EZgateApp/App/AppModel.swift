@@ -4,6 +4,14 @@ import Observation
 import OSLog
 import EZgateCore
 
+private enum StatisticsResetError: LocalizedError {
+    case extensionUnavailable
+
+    var errorDescription: String? {
+        "Statistics were deleted, but the live traffic counters could not be reset. Restart EZgate and try again."
+    }
+}
+
 @MainActor
 @Observable
 final class AppModel {
@@ -196,6 +204,11 @@ final class AppModel {
     func deleteStatistics() async {
         do {
             try await statisticsStore.deleteAll()
+            guard await filterIPC.resetTraffic() else {
+                throw StatisticsResetError.extensionUnavailable
+            }
+            traffic = []
+            previousTraffic = [:]
             todayTotals = TrafficTotals()
             statisticsSnapshot = nil
             statisticsErrorMessage = nil

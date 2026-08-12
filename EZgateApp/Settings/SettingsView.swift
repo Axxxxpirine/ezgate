@@ -150,14 +150,14 @@ private struct StatisticsSettingsView: View {
                 Label(ByteFormatter.string(model.todayTotals.sentBytes), systemImage: "arrow.up.circle")
             }
             .font(.title3.monospacedDigit())
-            Text("Statistics are stored locally in SQLite. Session totals are also visible in the menu panel.")
+            Text("Statistics are stored locally in SQLite. Resetting them also restarts the live session counters from zero.")
                 .foregroundStyle(.secondary)
             Button("Open Network Statistics", systemImage: "chart.xyaxis.line") {
                 openWindow(id: "statistics")
                 NSApplication.shared.activate(ignoringOtherApps: true)
             }
             Spacer()
-            Button("Delete All Statistics", role: .destructive) {
+            Button("Reset All Statistics", role: .destructive) {
                 Task { await model.deleteStatistics() }
             }
         }

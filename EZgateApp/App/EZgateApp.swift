@@ -7,7 +7,14 @@ struct EZgateApp: App {
     init() {
         let model = AppModel()
         _model = State(initialValue: model)
-        Task { @MainActor in await model.start() }
+        if StatisticsResetCLI.shouldRun {
+            Task {
+                let status = await StatisticsResetCLI.run()
+                exit(status)
+            }
+        } else {
+            Task { @MainActor in await model.start() }
+        }
     }
 
     var body: some Scene {

@@ -44,6 +44,20 @@ final class FilterIPCClient: @unchecked Sendable {
         return snapshot
     }
 
+    func resetTraffic() async -> Bool {
+        await withCheckedContinuation { continuation in
+            let reply = OneShotReply(continuation)
+            guard let proxy = proxy(onError: { [weak self] in
+                self?.invalidateConnection()
+                reply.resolve(false)
+            }) else {
+                reply.resolve(false)
+                return
+            }
+            proxy.resetTraffic { accepted in reply.resolve(accepted) }
+        }
+    }
+
     private func proxy(onError: @escaping @Sendable () -> Void) -> (any FilterIPCProtocol)? {
         guard let connection = activeConnection() else { return nil }
         return connection.remoteObjectProxyWithErrorHandler { (_: any Error) in
