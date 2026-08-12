@@ -101,7 +101,7 @@ final class AppModel {
             self?.networkContextDidChange(context)
         }
         networkMonitor.start()
-        filterController.refresh()
+        filterController.refresh(activateIfInactive: !hasCompletedOnboarding)
         await writeSharedRules(revision: configurationRevision)
         streamTask = Task { [weak self, provider] in
             for await update in provider.updates() {
