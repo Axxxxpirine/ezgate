@@ -2,6 +2,7 @@ import Foundation
 
 public enum ByteFormatter {
     public static func string(_ bytes: UInt64, rate: Bool = false) -> String {
+        if bytes == 0 { return rate ? "0 KB/s" : "0 KB" }
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useKB, .useMB, .useGB, .useTB]
         formatter.countStyle = .file

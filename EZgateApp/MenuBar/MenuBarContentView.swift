@@ -5,6 +5,7 @@ import EZgateCore
 struct MenuBarContentView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack(spacing: 0) {
@@ -138,6 +139,14 @@ struct MenuBarContentView: View {
             }
             .buttonStyle(.plain)
             Spacer()
+            Button {
+                openWindow(id: "statistics")
+                NSApplication.shared.activate(ignoringOtherApps: true)
+            } label: {
+                Image(systemName: "chart.xyaxis.line")
+            }
+            .buttonStyle(.plain)
+            .help("Open Network Statistics")
             Button {
                 openSettings()
                 NSApplication.shared.activate(ignoringOtherApps: true)

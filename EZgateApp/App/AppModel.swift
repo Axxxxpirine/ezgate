@@ -14,6 +14,9 @@ final class AppModel {
     var searchText = ""
     var sortOrder: TrafficSortOrder = .total
     var todayTotals = TrafficTotals()
+    var statisticsSnapshot: StatisticsSnapshot?
+    var statisticsLoading = false
+    var statisticsErrorMessage: String?
     var errorMessage: String?
     var hasCompletedOnboarding: Bool
     var refreshFrequency = 1.0
@@ -31,6 +34,8 @@ final class AppModel {
     private var streamTask: Task<Void, Never>?
     private var previousTraffic: [String: AppTraffic] = [:]
     private var configurationRevision: UInt64 = 0
+    private var lastStatisticsMaintenance = Date.distantPast
+    private var statisticsRequestID = UUID()
     private let logger = Logger(subsystem: "ch.ezgate.app", category: "ui")
 
     init(
@@ -94,6 +99,8 @@ final class AppModel {
                     : profiles[0].id
                 filteringPaused = persisted.filteringPaused
             }
+            try await statisticsStore.performMaintenance()
+            lastStatisticsMaintenance = .now
             todayTotals = try await statisticsStore.totals(since: Calendar.current.startOfDay(for: .now))
         } catch {
             errorMessage = error.localizedDescription
@@ -201,9 +208,33 @@ final class AppModel {
         do {
             try await statisticsStore.deleteAll()
             todayTotals = TrafficTotals()
+            statisticsSnapshot = nil
+            statisticsErrorMessage = nil
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+    func loadStatistics(
+        period: StatisticsPeriod,
+        applicationIdentifier: String?
+    ) async {
+        let requestID = UUID()
+        statisticsRequestID = requestID
+        statisticsLoading = statisticsSnapshot == nil
+        statisticsErrorMessage = nil
+        do {
+            let snapshot = try await statisticsStore.dashboard(
+                period: period,
+                applicationIdentifier: applicationIdentifier
+            )
+            guard statisticsRequestID == requestID, !Task.isCancelled else { return }
+            statisticsSnapshot = snapshot
+        } catch {
+            guard statisticsRequestID == requestID, !Task.isCancelled else { return }
+            statisticsErrorMessage = error.localizedDescription
+        }
+        if statisticsRequestID == requestID { statisticsLoading = false }
     }
 
     private func accept(_ update: [AppTraffic]) async {
@@ -234,6 +265,14 @@ final class AppModel {
         previousTraffic = Dictionary(uniqueKeysWithValues: update.map { ($0.id, $0) })
         todayTotals.receivedBytes &+= newRX
         todayTotals.sentBytes &+= newTX
+        if Date.now.timeIntervalSince(lastStatisticsMaintenance) >= 60 * 60 {
+            do {
+                try await statisticsStore.performMaintenance()
+                lastStatisticsMaintenance = .now
+            } catch {
+                logger.error("Statistics maintenance failed: \(error.localizedDescription, privacy: .public)")
+            }
+        }
     }
 
     private func networkContextDidChange(_ context: NetworkContext) {

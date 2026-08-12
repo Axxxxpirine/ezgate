@@ -25,5 +25,12 @@ struct EZgateApp: App {
                 .frame(minWidth: 680, minHeight: 480)
         }
         .windowResizability(.contentMinSize)
+
+        Window("Statistics", id: "statistics") {
+            StatisticsDashboardView()
+                .environment(model)
+        }
+        .defaultSize(width: 1040, height: 760)
+        .windowResizability(.contentMinSize)
     }
 }
