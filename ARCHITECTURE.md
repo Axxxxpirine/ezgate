@@ -29,7 +29,7 @@ EZgateNetworkExtension.systemextension
 
 The app updates a `NetworkProfile`, persists it atomically, and publishes a versioned `SharedRuleSnapshot` to the App Group. The Content Filter reads that snapshot and calls the pure `RuleEngine` for every new flow. Missing/corrupt configuration fails open so a development defect cannot silently disconnect the Mac.
 
-The signed real-data architecture adds a control/report provider. It receives `NEFilterReport` metadata and byte counters, aggregates events before storage/UI updates, and publishes compact snapshots. The restricted data provider must never create a local HTTP server, write packet contents, or attempt arbitrary IPC.
+The signed real-data architecture extends the macOS data provider's `handle(_:)` report path. It receives `NEFilterReport` metadata and byte counters, aggregates events before storage/UI updates, and publishes compact snapshots through the shared App Group. The provider must never create a local HTTP server or write packet contents; cross-process exchange remains narrow, versioned, and local.
 
 ## Concurrency
 
@@ -53,7 +53,7 @@ The canonical key preference is bundle identifier, signing identifier, executabl
 
 ## IPC decision
 
-App Group files were chosen for immutable rules because Apple explicitly supports a control/app side writing rules that the restricted data provider reads. Files are local, auditable, low latency, and require no listening socket. XPC is reserved for a future signed control component if measurement shows a need. No local HTTP endpoint is permitted.
+App Group files were chosen for immutable rules and compact report snapshots because Apple supports sharing data between related macOS targets through an App Group. Files are local, auditable, low latency, and require no listening socket. XPC is reserved only if later measurement shows a need. No local HTTP endpoint is permitted.
 
 ## Storage
 
@@ -74,4 +74,3 @@ The UI model can surface monitoring unavailable, persistence/statistics errors, 
 ## Bundle identifiers
 
 Bundle identifiers are centralized in `project.yml` and entitlement/configuration files. Changing `ch.ezgate.app` requires updating the app, system extension, App Group, Apple portal identifiers, provisioning profiles, and documentation as one atomic change.
-
