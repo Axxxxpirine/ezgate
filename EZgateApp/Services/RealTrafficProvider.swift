@@ -8,12 +8,15 @@ final class RealTrafficProvider: TrafficProvider, @unchecked Sendable {
     func updates() -> AsyncStream<[AppTraffic]> {
         AsyncStream { continuation in
             let task = Task.detached(priority: .utility) { [client] in
-                var lastUpdateDate: Date?
+                var previousSnapshot: SharedTrafficSnapshot?
                 while !Task.isCancelled {
-                    if let snapshot = await client.trafficSnapshot(),
-                       snapshot.updatedAt != lastUpdateDate {
-                        continuation.yield(snapshot.applications.map(self.enrichIdentity))
-                        lastUpdateDate = snapshot.updatedAt
+                    if let snapshot = await client.trafficSnapshot() {
+                        let rows = TrafficRateCalculator.applyingRates(
+                            to: snapshot,
+                            previous: previousSnapshot
+                        )
+                        continuation.yield(rows.map(self.enrichIdentity))
+                        previousSnapshot = snapshot
                     }
                     try? await Task.sleep(for: .seconds(1))
                 }

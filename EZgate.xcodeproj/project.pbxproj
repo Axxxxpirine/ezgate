@@ -27,6 +27,7 @@
 		5138D201A70DD6BFA873AB3A /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
 		5C57CF7D9CB954804F83A05E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3D996AF90EE85C7533BA0 /* Assets.xcassets */; };
 		650C7E3627F818BDC3831517 /* TrafficAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845623551BBDFFBDE564A174 /* TrafficAggregator.swift */; };
+		65C89AE486892946ACE5E516 /* TrafficRateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405A38A3BAE61C46C221C45 /* TrafficRateCalculator.swift */; };
 		6E58F094E22902D0159E5DAF /* FilterIPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E8A7ABAEFBB41DDEF421E /* FilterIPCClient.swift */; };
 		74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */; };
 		7E54396D2210200A6A250F80 /* TrafficModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04CA29DD8188F378F75DF0E /* TrafficModels.swift */; };
@@ -43,10 +44,12 @@
 		A13634909CB787F1A76F641D /* NetworkContextMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */; };
 		A65C9AF7A4937D3BD1E236D2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0C8531F7149E6762471069 /* OnboardingView.swift */; };
 		BC5055C8E4401107A022EE5B /* SharedRuleSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */; };
+		C3FC7522E091CE30D9A419A8 /* TrafficLiveSortingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34061B098B5DDFE48927127A /* TrafficLiveSortingTests.swift */; };
 		CA6DDC3079AE1DDE3DF7ABEB /* NetworkContextMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E90B28EDCAD7F6AAB4F3C /* NetworkContextMatcher.swift */; };
 		CC8D13AD15B5038D1000664A /* ProfileStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35753174145562501BF0169A /* ProfileStoreTests.swift */; };
 		E0DB640F48F444938BF7DE01 /* NetworkContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C96C46393812A5B72AD5F4 /* NetworkContext.swift */; };
 		E3A83D29AE6B7207D8B84E63 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2539A2EFDE699185FAF8E /* main.swift */; };
+		E8A935A8DE3E3E45F20F2DDF /* TrafficSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7B69AA37114E4FC4308B49 /* TrafficSorter.swift */; };
 		EA60B2E09C681223BFBAC279 /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
 		F167348AE2E6277D7EDC82B4 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA151A510288273F29EB34 /* ProfileStore.swift */; };
 		FD27D043DC41152A1C16CCDE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2F328C82C023F603D8C8 /* SettingsView.swift */; };
@@ -143,6 +146,7 @@
 		24FB2F328C82C023F603D8C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedRuleSnapshot.swift; sourceTree = "<group>"; };
 		28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteFormatter.swift; sourceTree = "<group>"; };
+		34061B098B5DDFE48927127A /* TrafficLiveSortingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficLiveSortingTests.swift; sourceTree = "<group>"; };
 		35753174145562501BF0169A /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
 		38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
 		3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIPC.swift; sourceTree = "<group>"; };
@@ -150,11 +154,13 @@
 		465F7F0139A37352C9293F7C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModels.swift; sourceTree = "<group>"; };
 		49B1C7F56E7F41C8CB6FCEEA /* EZgateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZgateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D7B69AA37114E4FC4308B49 /* TrafficSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficSorter.swift; sourceTree = "<group>"; };
 		51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = EZgateNetworkExtension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStoreTests.swift; sourceTree = "<group>"; };
 		6001AC09B4F1FAB795C97876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		60C96C46393812A5B72AD5F4 /* NetworkContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContext.swift; sourceTree = "<group>"; };
 		6209D730E3272244FFEA5A5A /* NetworkProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProfile.swift; sourceTree = "<group>"; };
+		6405A38A3BAE61C46C221C45 /* TrafficRateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficRateCalculator.swift; sourceTree = "<group>"; };
 		6743E589394D046917A9704E /* TrafficProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficProvider.swift; sourceTree = "<group>"; };
 		6B40718DF78477C8D828F45E /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		6B68AF48F864179982626252 /* EZgate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZgate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +281,7 @@
 				961E6A473A8AC2605694986D /* RuleEngineTests.swift */,
 				5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */,
 				D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */,
+				34061B098B5DDFE48927127A /* TrafficLiveSortingTests.swift */,
 				CD8566B2933A37546909375E /* UtilityTests.swift */,
 			);
 			path = EZgateTests;
@@ -296,6 +303,8 @@
 				3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */,
 				845623551BBDFFBDE564A174 /* TrafficAggregator.swift */,
 				6743E589394D046917A9704E /* TrafficProvider.swift */,
+				6405A38A3BAE61C46C221C45 /* TrafficRateCalculator.swift */,
+				4D7B69AA37114E4FC4308B49 /* TrafficSorter.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -600,6 +609,8 @@
 				650C7E3627F818BDC3831517 /* TrafficAggregator.swift in Sources */,
 				7E54396D2210200A6A250F80 /* TrafficModels.swift in Sources */,
 				103D4793F80E21B4820C59EE /* TrafficProvider.swift in Sources */,
+				65C89AE486892946ACE5E516 /* TrafficRateCalculator.swift in Sources */,
+				E8A935A8DE3E3E45F20F2DDF /* TrafficSorter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +622,7 @@
 				2D21F351894200C815B3BC8F /* RuleEngineTests.swift in Sources */,
 				0F058BDCBB332A70C43AB3CF /* StatisticsStoreTests.swift in Sources */,
 				3748FAFD56B54E6F6B187053 /* TrafficAggregatorTests.swift in Sources */,
+				C3FC7522E091CE30D9A419A8 /* TrafficLiveSortingTests.swift in Sources */,
 				3D9B5BC6703A2843C01BF465 /* UtilityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

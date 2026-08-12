@@ -57,6 +57,8 @@ public enum TrafficSortOrder: String, CaseIterable, Codable, Sendable {
     case total
     case download
     case upload
+    case liveDownload
+    case liveUpload
     case name
     case status
 
@@ -65,9 +67,10 @@ public enum TrafficSortOrder: String, CaseIterable, Codable, Sendable {
         case .total: "Total"
         case .download: "Download"
         case .upload: "Upload"
+        case .liveDownload: "Live Download"
+        case .liveUpload: "Live Upload"
         case .name: "Name"
         case .status: "Access"
         }
     }
 }
-
