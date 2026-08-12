@@ -83,7 +83,7 @@ struct MenuBarContentView: View {
                 }
             }
             .labelsHidden()
-            .frame(width: 92)
+            .frame(width: 132)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 9)

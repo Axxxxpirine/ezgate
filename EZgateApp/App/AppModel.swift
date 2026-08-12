@@ -68,18 +68,7 @@ final class AppModel {
                 || row.identity.bundleIdentifier?.lowercased().contains(query) == true
                 || row.identity.processNames.contains(where: { $0.lowercased().contains(query) })
         }
-        return filtered.sorted { lhs, rhs in
-            switch sortOrder {
-            case .total: return lhs.totalBytes > rhs.totalBytes
-            case .download: return lhs.receivedBytes > rhs.receivedBytes
-            case .upload: return lhs.sentBytes > rhs.sentBytes
-            case .name: return lhs.identity.displayName.localizedCaseInsensitiveCompare(rhs.identity.displayName) == .orderedAscending
-            case .status:
-                let left = isAllowed(lhs.identity)
-                let right = isAllowed(rhs.identity)
-                return left == right ? lhs.totalBytes > rhs.totalBytes : !left && right
-            }
-        }
+        return TrafficSorter.sorted(filtered, by: sortOrder, isAllowed: isAllowed)
     }
 
     var sessionTotals: TrafficTotals {
