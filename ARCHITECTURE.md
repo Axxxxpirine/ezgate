@@ -53,7 +53,7 @@ The canonical key preference is bundle identifier, signing identifier, executabl
 
 ## IPC decision
 
-App Group files were chosen for immutable rules and compact report snapshots because Apple supports sharing data between related macOS targets through an App Group. Files are local, auditable, low latency, and require no listening socket. XPC is reserved only if later measurement shows a need. No local HTTP endpoint is permitted.
+The app and root-run system extension communicate through a private Mach XPC service whose name is scoped to the shared App Group. Rules are sent as immutable snapshots and traffic is returned as compact aggregate snapshots. This avoids per-user/root App Group container ambiguity while keeping communication local, authenticated by macOS, and free of listening network sockets. No local HTTP endpoint is permitted.
 
 ## Storage
 
