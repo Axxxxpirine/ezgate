@@ -1,0 +1,1020 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		035DE1CD7FFC0AA29FAE693F /* MockTrafficProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4667152C3B9E8E9CD9BF8A87 /* MockTrafficProvider.swift */; };
+		050A8EE1C86C626CF86D6ACD /* StatisticsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */; };
+		05993EE676CCE8EDA5063FD7 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40718DF78477C8D828F45E /* Rules.swift */; };
+		0BF6BB9A9FADB79AFCB75FE1 /* FilterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9BD710792CE5BD6157571 /* FilterDataProvider.swift */; };
+		0F058BDCBB332A70C43AB3CF /* StatisticsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */; };
+		103D4793F80E21B4820C59EE /* TrafficProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6743E589394D046917A9704E /* TrafficProvider.swift */; };
+		14DECB12125A4B46717C0A34 /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
+		2D21F351894200C815B3BC8F /* RuleEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E6A473A8AC2605694986D /* RuleEngineTests.swift */; };
+		333516FD69CAEAA3A4889EE1 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B43107DC026C1DB863907A /* MenuBarContentView.swift */; };
+		3748FAFD56B54E6F6B187053 /* TrafficAggregatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */; };
+		3D9B5BC6703A2843C01BF465 /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8566B2933A37546909375E /* UtilityTests.swift */; };
+		40820E5939C79DAAF43F9969 /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */; };
+		4B6D721508726BA84BA16902 /* EZgateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8500DE6C7DC72464D085767 /* EZgateUITests.swift */; };
+		4C151BC3F1D8E1DCACC442B2 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7F0139A37352C9293F7C /* AppModel.swift */; };
+		5138D201A70DD6BFA873AB3A /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
+		5C57CF7D9CB954804F83A05E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3D996AF90EE85C7533BA0 /* Assets.xcassets */; };
+		650C7E3627F818BDC3831517 /* TrafficAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845623551BBDFFBDE564A174 /* TrafficAggregator.swift */; };
+		74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */; };
+		7E54396D2210200A6A250F80 /* TrafficModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04CA29DD8188F378F75DF0E /* TrafficModels.swift */; };
+		8049E4CCD8440D4E4C9B821B /* EZgateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B246BD45962DDF5467610DB /* EZgateApp.swift */; };
+		8440DB30E0DE9003D1CCA71A /* EZgateNetworkExtension.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8A390C262FFA99493F2C40AD /* EZgateCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8AE1BA401A65C305D1CEA771 /* ByteFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */; };
+		8B9A1D326558ECFB3370F830 /* AppIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1EC24A81313C07AE083D2C /* AppIdentity.swift */; };
+		907AFE29001B389150BDA556 /* EZgateCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94304908CC2CD9CD19BBC3E7 /* NetworkProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6209D730E3272244FFEA5A5A /* NetworkProfile.swift */; };
+		94FF12AE11147C7977B013ED /* StatisticsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75F6DFCF2A128725A8CD04 /* StatisticsStore.swift */; };
+		9C19F4ED94A2C2E187C20519 /* EZgateCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A13634909CB787F1A76F641D /* NetworkContextMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */; };
+		A65C9AF7A4937D3BD1E236D2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0C8531F7149E6762471069 /* OnboardingView.swift */; };
+		BC5055C8E4401107A022EE5B /* SharedRuleSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */; };
+		CA6DDC3079AE1DDE3DF7ABEB /* NetworkContextMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E90B28EDCAD7F6AAB4F3C /* NetworkContextMatcher.swift */; };
+		CC8D13AD15B5038D1000664A /* ProfileStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35753174145562501BF0169A /* ProfileStoreTests.swift */; };
+		E0DB640F48F444938BF7DE01 /* NetworkContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C96C46393812A5B72AD5F4 /* NetworkContext.swift */; };
+		E3A83D29AE6B7207D8B84E63 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2539A2EFDE699185FAF8E /* main.swift */; };
+		EA60B2E09C681223BFBAC279 /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
+		F167348AE2E6277D7EDC82B4 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AA151A510288273F29EB34 /* ProfileStore.swift */; };
+		FD27D043DC41152A1C16CCDE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB2F328C82C023F603D8C8 /* SettingsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		089ABBA7837E5435579BBC4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B8DD507E15C783DCC34F2D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6E41BE003B8E245B7EB8503;
+			remoteInfo = EZgateNetworkExtension;
+		};
+		2926AA589A6FFEC314954170 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B8DD507E15C783DCC34F2D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86192973DD4C548EE1C694AA;
+			remoteInfo = EZgateCore;
+		};
+		54F5F4703AE869C667800746 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B8DD507E15C783DCC34F2D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 063A9C108D48B37D8FC33EBF;
+			remoteInfo = EZgate;
+		};
+		8D638D6B3D516AE5B65F5B56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B8DD507E15C783DCC34F2D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86192973DD4C548EE1C694AA;
+			remoteInfo = EZgateCore;
+		};
+		9D7B9CBB8E2E9D4163FDF04D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B8DD507E15C783DCC34F2D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86192973DD4C548EE1C694AA;
+			remoteInfo = EZgateCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		185D2D8C5498B6A418E34E6B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9C19F4ED94A2C2E187C20519 /* EZgateCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E420EEA5FEA5F6D92228FB4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				907AFE29001B389150BDA556 /* EZgateCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A18E048CE39DDFA4BC1C2ED9 /* Embed System Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SYSTEM_EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				8440DB30E0DE9003D1CCA71A /* EZgateNetworkExtension.systemextension in Embed System Extensions */,
+			);
+			name = "Embed System Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC711875A2D693552687978D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8A390C262FFA99493F2C40AD /* EZgateCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0F1EF802A02D961385F93FB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		14B43107DC026C1DB863907A /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
+		24FB2F328C82C023F603D8C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedRuleSnapshot.swift; sourceTree = "<group>"; };
+		28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteFormatter.swift; sourceTree = "<group>"; };
+		35753174145562501BF0169A /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
+		38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
+		465F7F0139A37352C9293F7C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		4667152C3B9E8E9CD9BF8A87 /* MockTrafficProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTrafficProvider.swift; sourceTree = "<group>"; };
+		49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModels.swift; sourceTree = "<group>"; };
+		49B1C7F56E7F41C8CB6FCEEA /* EZgateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZgateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */ = {isa = PBXFileReference; explicitFileType = "wrapper.system-extension"; includeInIndex = 0; path = EZgateNetworkExtension.systemextension; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStoreTests.swift; sourceTree = "<group>"; };
+		6001AC09B4F1FAB795C97876 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		60C96C46393812A5B72AD5F4 /* NetworkContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContext.swift; sourceTree = "<group>"; };
+		6209D730E3272244FFEA5A5A /* NetworkProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProfile.swift; sourceTree = "<group>"; };
+		6743E589394D046917A9704E /* TrafficProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficProvider.swift; sourceTree = "<group>"; };
+		6B40718DF78477C8D828F45E /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		6B68AF48F864179982626252 /* EZgate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZgate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BE2539A2EFDE699185FAF8E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		743E6449F661798928E6B45A /* EZgateCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EZgateCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF9BD710792CE5BD6157571 /* FilterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDataProvider.swift; sourceTree = "<group>"; };
+		817E90B28EDCAD7F6AAB4F3C /* NetworkContextMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContextMatcher.swift; sourceTree = "<group>"; };
+		845623551BBDFFBDE564A174 /* TrafficAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficAggregator.swift; sourceTree = "<group>"; };
+		8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkContextMonitor.swift; sourceTree = "<group>"; };
+		8B246BD45962DDF5467610DB /* EZgateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZgateApp.swift; sourceTree = "<group>"; };
+		961E6A473A8AC2605694986D /* RuleEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEngineTests.swift; sourceTree = "<group>"; };
+		A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEngine.swift; sourceTree = "<group>"; };
+		AF0C8531F7149E6762471069 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B4AA151A510288273F29EB34 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		B9A79F9BAF918CF127773F01 /* EZgateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZgateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8500DE6C7DC72464D085767 /* EZgateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZgateUITests.swift; sourceTree = "<group>"; };
+		CD8566B2933A37546909375E /* UtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTests.swift; sourceTree = "<group>"; };
+		D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficAggregatorTests.swift; sourceTree = "<group>"; };
+		DAA3D996AF90EE85C7533BA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC1EC24A81313C07AE083D2C /* AppIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIdentity.swift; sourceTree = "<group>"; };
+		DF75F6DFCF2A128725A8CD04 /* StatisticsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStore.swift; sourceTree = "<group>"; };
+		E04CA29DD8188F378F75DF0E /* TrafficModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficModels.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		148EA24E10E69B0784453115 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14DECB12125A4B46717C0A34 /* EZgateCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B8FFB17502F3F60F193ECAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA60B2E09C681223BFBAC279 /* EZgateCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAD46A3E86E34B3D95D5B9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5138D201A70DD6BFA873AB3A /* EZgateCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080AB817C5ADC67F028C44E3 /* Formatting */ = {
+			isa = PBXGroup;
+			children = (
+				28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */,
+			);
+			path = Formatting;
+			sourceTree = "<group>";
+		};
+		1420CA09F1E59E9FC5E7C133 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				DF75F6DFCF2A128725A8CD04 /* StatisticsStore.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		1EFE7B8778D0EBDD3575EE57 /* EZgateUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C8500DE6C7DC72464D085767 /* EZgateUITests.swift */,
+			);
+			path = EZgateUITests;
+			sourceTree = "<group>";
+		};
+		20A3E13ACC66F9D3B93395AC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				24FB2F328C82C023F603D8C8 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		27F2865940345240B3C3F3B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6B68AF48F864179982626252 /* EZgate.app */,
+				743E6449F661798928E6B45A /* EZgateCore.framework */,
+				51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */,
+				49B1C7F56E7F41C8CB6FCEEA /* EZgateTests.xctest */,
+				B9A79F9BAF918CF127773F01 /* EZgateUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		361BB3F38348CED38BFC6239 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC1EC24A81313C07AE083D2C /* AppIdentity.swift */,
+				60C96C46393812A5B72AD5F4 /* NetworkContext.swift */,
+				6209D730E3272244FFEA5A5A /* NetworkProfile.swift */,
+				6B40718DF78477C8D828F45E /* Rules.swift */,
+				49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */,
+				E04CA29DD8188F378F75DF0E /* TrafficModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		39E485E3FE9255C125DA1954 /* EZgateTests */ = {
+			isa = PBXGroup;
+			children = (
+				35753174145562501BF0169A /* ProfileStoreTests.swift */,
+				961E6A473A8AC2605694986D /* RuleEngineTests.swift */,
+				5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */,
+				D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */,
+				CD8566B2933A37546909375E /* UtilityTests.swift */,
+			);
+			path = EZgateTests;
+			sourceTree = "<group>";
+		};
+		4AD9E72CB0EA3A0D324366D9 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B4AA151A510288273F29EB34 /* ProfileStore.swift */,
+				25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		6EF479AEC55E74CB1E5AFA42 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				845623551BBDFFBDE564A174 /* TrafficAggregator.swift */,
+				6743E589394D046917A9704E /* TrafficProvider.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		71A0A81A74B1EEF1281766DF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DAA3D996AF90EE85C7533BA0 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7EF8D85ACB4A501AD95B77B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */,
+				4667152C3B9E8E9CD9BF8A87 /* MockTrafficProvider.swift */,
+				8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9244D56CD729D565973F84C3 = {
+			isa = PBXGroup;
+			children = (
+				E7F9DDAA035CFA4A8DB5E25D /* EZgateApp */,
+				F22F048BE12FFF64D135CACC /* EZgateCore */,
+				C5B68DF5D346AB163EAAE2AD /* EZgateNetworkExtension */,
+				39E485E3FE9255C125DA1954 /* EZgateTests */,
+				1EFE7B8778D0EBDD3575EE57 /* EZgateUITests */,
+				27F2865940345240B3C3F3B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C5B68DF5D346AB163EAAE2AD /* EZgateNetworkExtension */ = {
+			isa = PBXGroup;
+			children = (
+				D4110A20D9FBEA776CFE7788 /* Providers */,
+				6001AC09B4F1FAB795C97876 /* Info.plist */,
+				6BE2539A2EFDE699185FAF8E /* main.swift */,
+			);
+			path = EZgateNetworkExtension;
+			sourceTree = "<group>";
+		};
+		D043C4DBF1DFEE67ADAE3C9E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				465F7F0139A37352C9293F7C /* AppModel.swift */,
+				8B246BD45962DDF5467610DB /* EZgateApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D4110A20D9FBEA776CFE7788 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				7AF9BD710792CE5BD6157571 /* FilterDataProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		D603789E327015EB4C8AF0F6 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				14B43107DC026C1DB863907A /* MenuBarContentView.swift */,
+				AF0C8531F7149E6762471069 /* OnboardingView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		E54CF233C9EF7E7780877F02 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				817E90B28EDCAD7F6AAB4F3C /* NetworkContextMatcher.swift */,
+				A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		E7F9DDAA035CFA4A8DB5E25D /* EZgateApp */ = {
+			isa = PBXGroup;
+			children = (
+				D043C4DBF1DFEE67ADAE3C9E /* App */,
+				D603789E327015EB4C8AF0F6 /* MenuBar */,
+				71A0A81A74B1EEF1281766DF /* Resources */,
+				7EF8D85ACB4A501AD95B77B4 /* Services */,
+				20A3E13ACC66F9D3B93395AC /* Settings */,
+				0F1EF802A02D961385F93FB5 /* Info.plist */,
+			);
+			path = EZgateApp;
+			sourceTree = "<group>";
+		};
+		F22F048BE12FFF64D135CACC /* EZgateCore */ = {
+			isa = PBXGroup;
+			children = (
+				080AB817C5ADC67F028C44E3 /* Formatting */,
+				361BB3F38348CED38BFC6239 /* Models */,
+				6EF479AEC55E74CB1E5AFA42 /* Networking */,
+				E54CF233C9EF7E7780877F02 /* Rules */,
+				1420CA09F1E59E9FC5E7C133 /* Statistics */,
+				4AD9E72CB0EA3A0D324366D9 /* Storage */,
+			);
+			path = EZgateCore;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		063A9C108D48B37D8FC33EBF /* EZgate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDB3F817CADD1A112F531721 /* Build configuration list for PBXNativeTarget "EZgate" */;
+			buildPhases = (
+				8E6AFCF984802F935B51B02B /* Sources */,
+				0AB50A9E8F17C63165860B87 /* Resources */,
+				148EA24E10E69B0784453115 /* Frameworks */,
+				A18E048CE39DDFA4BC1C2ED9 /* Embed System Extensions */,
+				DC711875A2D693552687978D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9921F01B6A7693E545B41CB /* PBXTargetDependency */,
+				2654C91F1EE8CCDDB4647CA1 /* PBXTargetDependency */,
+			);
+			name = EZgate;
+			packageProductDependencies = (
+			);
+			productName = EZgate;
+			productReference = 6B68AF48F864179982626252 /* EZgate.app */;
+			productType = "com.apple.product-type.application";
+		};
+		86192973DD4C548EE1C694AA /* EZgateCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59E87857ECF1460B1C31AFD3 /* Build configuration list for PBXNativeTarget "EZgateCore" */;
+			buildPhases = (
+				20A5186866D7DB1003D96F79 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EZgateCore;
+			packageProductDependencies = (
+			);
+			productName = EZgateCore;
+			productReference = 743E6449F661798928E6B45A /* EZgateCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D74E00C42AC2262BDF2764AE /* EZgateUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D245462A9BCCE0BBD852DD68 /* Build configuration list for PBXNativeTarget "EZgateUITests" */;
+			buildPhases = (
+				73367C5869A03BA7EE276D83 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				464C2009386AC62355E8BED5 /* PBXTargetDependency */,
+			);
+			name = EZgateUITests;
+			packageProductDependencies = (
+			);
+			productName = EZgateUITests;
+			productReference = B9A79F9BAF918CF127773F01 /* EZgateUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E329FA62CFAC7BFB8396F8A8 /* EZgateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F4C6A97B5F0DB18C9500CDA /* Build configuration list for PBXNativeTarget "EZgateTests" */;
+			buildPhases = (
+				3D4F1CCE867304256D63ADD5 /* Sources */,
+				4B8FFB17502F3F60F193ECAA /* Frameworks */,
+				8E420EEA5FEA5F6D92228FB4 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7A152D2727886C82B5C0DA8 /* PBXTargetDependency */,
+			);
+			name = EZgateTests;
+			packageProductDependencies = (
+			);
+			productName = EZgateTests;
+			productReference = 49B1C7F56E7F41C8CB6FCEEA /* EZgateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F6E41BE003B8E245B7EB8503 /* EZgateNetworkExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 487AE65560B461955BFD510D /* Build configuration list for PBXNativeTarget "EZgateNetworkExtension" */;
+			buildPhases = (
+				8FA67FC9A55835C6492B08BE /* Sources */,
+				5DAD46A3E86E34B3D95D5B9B /* Frameworks */,
+				185D2D8C5498B6A418E34E6B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D079992781ECD7AFA2E8F295 /* PBXTargetDependency */,
+			);
+			name = EZgateNetworkExtension;
+			packageProductDependencies = (
+			);
+			productName = EZgateNetworkExtension;
+			productReference = 51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */;
+			productType = "com.apple.product-type.system-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0B8DD507E15C783DCC34F2D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					063A9C108D48B37D8FC33EBF = {
+						DevelopmentTeam = "";
+					};
+					86192973DD4C548EE1C694AA = {
+						DevelopmentTeam = "";
+					};
+					D74E00C42AC2262BDF2764AE = {
+						DevelopmentTeam = "";
+						TestTargetID = 063A9C108D48B37D8FC33EBF;
+					};
+					E329FA62CFAC7BFB8396F8A8 = {
+						DevelopmentTeam = "";
+					};
+					F6E41BE003B8E245B7EB8503 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 97CCA1E4FE634A9C9F8CA624 /* Build configuration list for PBXProject "EZgate" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9244D56CD729D565973F84C3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 27F2865940345240B3C3F3B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				063A9C108D48B37D8FC33EBF /* EZgate */,
+				86192973DD4C548EE1C694AA /* EZgateCore */,
+				F6E41BE003B8E245B7EB8503 /* EZgateNetworkExtension */,
+				E329FA62CFAC7BFB8396F8A8 /* EZgateTests */,
+				D74E00C42AC2262BDF2764AE /* EZgateUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0AB50A9E8F17C63165860B87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C57CF7D9CB954804F83A05E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20A5186866D7DB1003D96F79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B9A1D326558ECFB3370F830 /* AppIdentity.swift in Sources */,
+				8AE1BA401A65C305D1CEA771 /* ByteFormatter.swift in Sources */,
+				E0DB640F48F444938BF7DE01 /* NetworkContext.swift in Sources */,
+				CA6DDC3079AE1DDE3DF7ABEB /* NetworkContextMatcher.swift in Sources */,
+				94304908CC2CD9CD19BBC3E7 /* NetworkProfile.swift in Sources */,
+				F167348AE2E6277D7EDC82B4 /* ProfileStore.swift in Sources */,
+				40820E5939C79DAAF43F9969 /* RuleEngine.swift in Sources */,
+				05993EE676CCE8EDA5063FD7 /* Rules.swift in Sources */,
+				BC5055C8E4401107A022EE5B /* SharedRuleSnapshot.swift in Sources */,
+				050A8EE1C86C626CF86D6ACD /* StatisticsModels.swift in Sources */,
+				94FF12AE11147C7977B013ED /* StatisticsStore.swift in Sources */,
+				650C7E3627F818BDC3831517 /* TrafficAggregator.swift in Sources */,
+				7E54396D2210200A6A250F80 /* TrafficModels.swift in Sources */,
+				103D4793F80E21B4820C59EE /* TrafficProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D4F1CCE867304256D63ADD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC8D13AD15B5038D1000664A /* ProfileStoreTests.swift in Sources */,
+				2D21F351894200C815B3BC8F /* RuleEngineTests.swift in Sources */,
+				0F058BDCBB332A70C43AB3CF /* StatisticsStoreTests.swift in Sources */,
+				3748FAFD56B54E6F6B187053 /* TrafficAggregatorTests.swift in Sources */,
+				3D9B5BC6703A2843C01BF465 /* UtilityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73367C5869A03BA7EE276D83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B6D721508726BA84BA16902 /* EZgateUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E6AFCF984802F935B51B02B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C151BC3F1D8E1DCACC442B2 /* AppModel.swift in Sources */,
+				8049E4CCD8440D4E4C9B821B /* EZgateApp.swift in Sources */,
+				74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */,
+				333516FD69CAEAA3A4889EE1 /* MenuBarContentView.swift in Sources */,
+				035DE1CD7FFC0AA29FAE693F /* MockTrafficProvider.swift in Sources */,
+				A13634909CB787F1A76F641D /* NetworkContextMonitor.swift in Sources */,
+				A65C9AF7A4937D3BD1E236D2 /* OnboardingView.swift in Sources */,
+				FD27D043DC41152A1C16CCDE /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FA67FC9A55835C6492B08BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BF6BB9A9FADB79AFCB75FE1 /* FilterDataProvider.swift in Sources */,
+				E3A83D29AE6B7207D8B84E63 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2654C91F1EE8CCDDB4647CA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6E41BE003B8E245B7EB8503 /* EZgateNetworkExtension */;
+			targetProxy = 089ABBA7837E5435579BBC4C /* PBXContainerItemProxy */;
+		};
+		464C2009386AC62355E8BED5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 063A9C108D48B37D8FC33EBF /* EZgate */;
+			targetProxy = 54F5F4703AE869C667800746 /* PBXContainerItemProxy */;
+		};
+		D079992781ECD7AFA2E8F295 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86192973DD4C548EE1C694AA /* EZgateCore */;
+			targetProxy = 2926AA589A6FFEC314954170 /* PBXContainerItemProxy */;
+		};
+		D7A152D2727886C82B5C0DA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86192973DD4C548EE1C694AA /* EZgateCore */;
+			targetProxy = 8D638D6B3D516AE5B65F5B56 /* PBXContainerItemProxy */;
+		};
+		E9921F01B6A7693E545B41CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86192973DD4C548EE1C694AA /* EZgateCore */;
+			targetProxy = 9D7B9CBB8E2E9D4163FDF04D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0F940949C88F928B3C40ACB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		3FC20BFF75F739872EBB46D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.tests;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		457B177ED28DA1240269F6C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.uitests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = EZgate;
+			};
+			name = Debug;
+		};
+		88779581F0A350028FA819DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.uitests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = EZgate;
+			};
+			name = Release;
+		};
+		9ADE81EB0E753295A73EC900 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -lsqlite3";
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.core;
+				PRODUCT_NAME = EZgateCore;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		AC045DF150BF064141D754C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/EZgate.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EZgateApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.app;
+				PRODUCT_NAME = EZgate;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B1590B916362F3F2BDA362C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/EZgate.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EZgateApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.app;
+				PRODUCT_NAME = EZgate;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B1B9A4D46226E3FB48BAFE1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/EZgateNetworkExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EZgateNetworkExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.ezgate.app.network-extension";
+				PRODUCT_NAME = EZgateNetworkExtension;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_EXTENSION_API_ONLY = YES;
+			};
+			name = Release;
+		};
+		B30B5E43BA853472B5C411EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.tests;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B47F84FE574B125E68C7CC25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -lsqlite3";
+				PRODUCT_BUNDLE_IDENTIFIER = ch.ezgate.core;
+				PRODUCT_NAME = EZgateCore;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		D5910EAB45CADB916C1C6A19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		D791A2362C10F0C7C1AC5404 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/EZgateNetworkExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = EZgateNetworkExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.ezgate.app.network-extension";
+				PRODUCT_NAME = EZgateNetworkExtension;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_EXTENSION_API_ONLY = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F4C6A97B5F0DB18C9500CDA /* Build configuration list for PBXNativeTarget "EZgateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B30B5E43BA853472B5C411EE /* Debug */,
+				3FC20BFF75F739872EBB46D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		487AE65560B461955BFD510D /* Build configuration list for PBXNativeTarget "EZgateNetworkExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D791A2362C10F0C7C1AC5404 /* Debug */,
+				B1B9A4D46226E3FB48BAFE1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		59E87857ECF1460B1C31AFD3 /* Build configuration list for PBXNativeTarget "EZgateCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9ADE81EB0E753295A73EC900 /* Debug */,
+				B47F84FE574B125E68C7CC25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		97CCA1E4FE634A9C9F8CA624 /* Build configuration list for PBXProject "EZgate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F940949C88F928B3C40ACB3 /* Debug */,
+				D5910EAB45CADB916C1C6A19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D245462A9BCCE0BBD852DD68 /* Build configuration list for PBXNativeTarget "EZgateUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457B177ED28DA1240269F6C5 /* Debug */,
+				88779581F0A350028FA819DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EDB3F817CADD1A112F531721 /* Build configuration list for PBXNativeTarget "EZgate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC045DF150BF064141D754C3 /* Debug */,
+				B1590B916362F3F2BDA362C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0B8DD507E15C783DCC34F2D5 /* Project object */;
+}
