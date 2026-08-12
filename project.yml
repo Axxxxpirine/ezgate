@@ -40,7 +40,11 @@ targets:
       properties:
         CFBundleDisplayName: EZgate Network Extension
         CFBundlePackageType: SYSX
+        CFBundleShortVersionString: "0.1.9"
+        CFBundleVersion: "10"
+        NSSystemExtensionUsageDescription: "EZgate installs a local network filter to show which applications use the network and enforce your Allow or Block rules."
         NetworkExtension:
+          NEMachServiceName: "group.ch.ezgate.shared.filter"
           NEProviderClasses:
             com.apple.networkextension.filter-data: "$(PRODUCT_MODULE_NAME).FilterDataProvider"
     entitlements:
@@ -56,10 +60,12 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.app.network-extension
-        PRODUCT_NAME: EZgateNetworkExtension
+        PRODUCT_NAME: ch.ezgate.app.network-extension
+        PRODUCT_MODULE_NAME: EZgateNetworkExtension
         CODE_SIGN_ENTITLEMENTS: Config/EZgateNetworkExtension.entitlements
         SKIP_INSTALL: YES
         SYSTEM_EXTENSION_API_ONLY: YES
+        EXECUTABLE_NAME: ch.ezgate.app.network-extension
   EZgate:
     type: application
     platform: macOS
@@ -75,6 +81,7 @@ targets:
         LSMinimumSystemVersion: "14.0"
         LSUIElement: true
         NSHumanReadableCopyright: "Copyright © 2026 EZgate contributors"
+        NSSystemExtensionUsageDescription: "EZgate installs a local network filter to show which applications use the network and enforce your Allow or Block rules."
     entitlements:
       path: Config/EZgate.entitlements
       properties:

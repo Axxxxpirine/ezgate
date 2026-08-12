@@ -26,6 +26,7 @@ final class AppModel {
     private let profileStore: ProfileStore
     private let statisticsStore: StatisticsStore
     private let provider: any TrafficProvider
+    private let filterIPC = FilterIPCClient.shared
     private let sessionID = UUID()
     private var streamTask: Task<Void, Never>?
     private var previousTraffic: [String: AppTraffic] = [:]
@@ -101,8 +102,13 @@ final class AppModel {
             self?.networkContextDidChange(context)
         }
         networkMonitor.start()
-        filterController.refresh(activateIfInactive: !hasCompletedOnboarding)
-        await writeSharedRules(revision: configurationRevision)
+        filterController.onFilterActive = { [weak self] in
+            guard let self else { return }
+            let revision = self.configurationRevision
+            Task { await self.synchronizeRules(revision: revision) }
+        }
+        filterController.refresh(activateIfInactive: true)
+        await synchronizeRules(revision: configurationRevision)
         streamTask = Task { [weak self, provider] in
             for await update in provider.updates() {
                 guard let self, !Task.isCancelled else { return }
@@ -255,23 +261,23 @@ final class AppModel {
         Task { [profileStore] in
             do { try await profileStore.save(configuration) }
             catch { logger.error("Configuration write failed: \(error.localizedDescription, privacy: .public)") }
-            await writeSharedRules(revision: revision)
+            await synchronizeRules(revision: revision)
         }
     }
 
-    private func writeSharedRules(revision: UInt64) async {
-        guard let containerURL = FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: SharedRuleSnapshotStore.appGroupIdentifier
-        ) else { return }
+    private func synchronizeRules(revision: UInt64) async {
         let snapshot = SharedRuleSnapshot(
             activeProfile: activeProfile,
             filteringPaused: filteringPaused,
             revision: revision
         )
-        do {
-            try SharedRuleSnapshotStore.write(snapshot, to: SharedRuleSnapshotStore.fileURL(containerURL: containerURL))
-        } catch {
-            logger.error("Shared rules write failed: \(error.localizedDescription, privacy: .public)")
+        for attempt in 0..<20 {
+            if await filterIPC.updateRules(snapshot) { return }
+            guard attempt < 19 else {
+                logger.error("Unable to synchronize rules with the network extension")
+                return
+            }
+            try? await Task.sleep(for: .milliseconds(500))
         }
     }
 }

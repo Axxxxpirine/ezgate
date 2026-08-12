@@ -1,5 +1,7 @@
 .DS_Store
 DerivedData/
+.derived/
+.signed-derived/
 .build/
 build/
 *.xcuserstate
@@ -15,4 +17,3 @@ xcuserdata/
 *.cer
 *.p12
 .env
-

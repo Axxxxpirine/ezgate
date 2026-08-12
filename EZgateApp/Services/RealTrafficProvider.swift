@@ -3,31 +3,17 @@ import Foundation
 import EZgateCore
 
 final class RealTrafficProvider: TrafficProvider, @unchecked Sendable {
+    private let client = FilterIPCClient.shared
+
     func updates() -> AsyncStream<[AppTraffic]> {
         AsyncStream { continuation in
-            let task = Task.detached(priority: .utility) {
-                guard let containerURL = FileManager.default.containerURL(
-                    forSecurityApplicationGroupIdentifier: SharedRuleSnapshotStore.appGroupIdentifier
-                ) else {
-                    continuation.yield([])
-                    continuation.finish()
-                    return
-                }
-
-                let fileURL = SharedTrafficSnapshotStore.fileURL(containerURL: containerURL)
-                var lastModificationDate: Date?
+            let task = Task.detached(priority: .utility) { [client] in
+                var lastUpdateDate: Date?
                 while !Task.isCancelled {
-                    let modificationDate = try? fileURL.resourceValues(
-                        forKeys: [.contentModificationDateKey]
-                    ).contentModificationDate
-                    if modificationDate != nil, modificationDate != lastModificationDate {
-                        do {
-                            let snapshot = try SharedTrafficSnapshotStore.read(from: fileURL)
-                            continuation.yield(snapshot.applications.map(self.enrichIdentity))
-                            lastModificationDate = modificationDate
-                        } catch {
-                            // Atomic replacement can briefly race a directory notification; retry next tick.
-                        }
+                    if let snapshot = await client.trafficSnapshot(),
+                       snapshot.updatedAt != lastUpdateDate {
+                        continuation.yield(snapshot.applications.map(self.enrichIdentity))
+                        lastUpdateDate = snapshot.updatedAt
                     }
                     try? await Task.sleep(for: .seconds(1))
                 }

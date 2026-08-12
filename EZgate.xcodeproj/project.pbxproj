@@ -21,11 +21,13 @@
 		3748FAFD56B54E6F6B187053 /* TrafficAggregatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */; };
 		3D9B5BC6703A2843C01BF465 /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8566B2933A37546909375E /* UtilityTests.swift */; };
 		40820E5939C79DAAF43F9969 /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */; };
+		4AA225C992FDEAECF8F2C8AF /* FilterIPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */; };
 		4B6D721508726BA84BA16902 /* EZgateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8500DE6C7DC72464D085767 /* EZgateUITests.swift */; };
 		4C151BC3F1D8E1DCACC442B2 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7F0139A37352C9293F7C /* AppModel.swift */; };
 		5138D201A70DD6BFA873AB3A /* EZgateCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 743E6449F661798928E6B45A /* EZgateCore.framework */; };
 		5C57CF7D9CB954804F83A05E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA3D996AF90EE85C7533BA0 /* Assets.xcassets */; };
 		650C7E3627F818BDC3831517 /* TrafficAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845623551BBDFFBDE564A174 /* TrafficAggregator.swift */; };
+		6E58F094E22902D0159E5DAF /* FilterIPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E8A7ABAEFBB41DDEF421E /* FilterIPCClient.swift */; };
 		74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */; };
 		7E54396D2210200A6A250F80 /* TrafficModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04CA29DD8188F378F75DF0E /* TrafficModels.swift */; };
 		8049E4CCD8440D4E4C9B821B /* EZgateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B246BD45962DDF5467610DB /* EZgateApp.swift */; };
@@ -142,6 +144,7 @@
 		28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteFormatter.swift; sourceTree = "<group>"; };
 		35753174145562501BF0169A /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
 		38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
+		3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIPC.swift; sourceTree = "<group>"; };
 		41DE9202A29401576AF0BF0C /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
 		465F7F0139A37352C9293F7C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModels.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 		A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEngine.swift; sourceTree = "<group>"; };
 		AF0C8531F7149E6762471069 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B4AA151A510288273F29EB34 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		B71E8A7ABAEFBB41DDEF421E /* FilterIPCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIPCClient.swift; sourceTree = "<group>"; };
 		B9A79F9BAF918CF127773F01 /* EZgateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZgateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8500DE6C7DC72464D085767 /* EZgateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZgateUITests.swift; sourceTree = "<group>"; };
 		CD8566B2933A37546909375E /* UtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityTests.swift; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 		6EF479AEC55E74CB1E5AFA42 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */,
 				845623551BBDFFBDE564A174 /* TrafficAggregator.swift */,
 				6743E589394D046917A9704E /* TrafficProvider.swift */,
 			);
@@ -305,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				41DE9202A29401576AF0BF0C /* FilterController.swift */,
+				B71E8A7ABAEFBB41DDEF421E /* FilterIPCClient.swift */,
 				38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */,
 				8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */,
 				F04E7037B79635F5A135D8B8 /* RealTrafficProvider.swift */,
@@ -569,6 +575,7 @@
 			files = (
 				8B9A1D326558ECFB3370F830 /* AppIdentity.swift in Sources */,
 				8AE1BA401A65C305D1CEA771 /* ByteFormatter.swift in Sources */,
+				4AA225C992FDEAECF8F2C8AF /* FilterIPC.swift in Sources */,
 				E0DB640F48F444938BF7DE01 /* NetworkContext.swift in Sources */,
 				CA6DDC3079AE1DDE3DF7ABEB /* NetworkContextMatcher.swift in Sources */,
 				94304908CC2CD9CD19BBC3E7 /* NetworkProfile.swift in Sources */,
@@ -612,6 +619,7 @@
 				4C151BC3F1D8E1DCACC442B2 /* AppModel.swift in Sources */,
 				8049E4CCD8440D4E4C9B821B /* EZgateApp.swift in Sources */,
 				1B3CB1E325DE84CBA65D015B /* FilterController.swift in Sources */,
+				6E58F094E22902D0159E5DAF /* FilterIPCClient.swift in Sources */,
 				74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */,
 				333516FD69CAEAA3A4889EE1 /* MenuBarContentView.swift in Sources */,
 				A13634909CB787F1A76F641D /* NetworkContextMonitor.swift in Sources */,
@@ -841,13 +849,15 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Config/EZgateNetworkExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_NAME = "ch.ezgate.app.network-extension";
 				INFOPLIST_FILE = EZgateNetworkExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.ezgate.app.network-extension";
-				PRODUCT_NAME = EZgateNetworkExtension;
+				PRODUCT_MODULE_NAME = EZgateNetworkExtension;
+				PRODUCT_NAME = "ch.ezgate.app.network-extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_EXTENSION_API_ONLY = YES;
@@ -959,13 +969,15 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Config/EZgateNetworkExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_NAME = "ch.ezgate.app.network-extension";
 				INFOPLIST_FILE = EZgateNetworkExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.ezgate.app.network-extension";
-				PRODUCT_NAME = EZgateNetworkExtension;
+				PRODUCT_MODULE_NAME = EZgateNetworkExtension;
+				PRODUCT_NAME = "ch.ezgate.app.network-extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_EXTENSION_API_ONLY = YES;
