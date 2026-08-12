@@ -34,7 +34,7 @@ final class FilterController: NSObject, @preconcurrency OSSystemExtensionRequest
 
     private(set) var status: FilterStatus = .inactive
 
-    func refresh() {
+    func refresh(activateIfInactive: Bool = false) {
         let manager = NEFilterManager.shared()
         manager.loadFromPreferences { [weak self] error in
             Task { @MainActor in
@@ -42,7 +42,13 @@ final class FilterController: NSObject, @preconcurrency OSSystemExtensionRequest
                 if let error {
                     self.status = .failed(error.localizedDescription)
                 } else {
-                    self.status = manager.isEnabled ? .active : .inactive
+                    if manager.isEnabled {
+                        self.status = .active
+                    } else if activateIfInactive {
+                        self.activate()
+                    } else {
+                        self.status = .inactive
+                    }
                 }
             }
         }
