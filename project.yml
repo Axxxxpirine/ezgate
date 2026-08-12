@@ -1,0 +1,121 @@
+name: EZgate
+options:
+  bundleIdPrefix: ch.ezgate
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    SWIFT_VERSION: 6.0
+    MACOSX_DEPLOYMENT_TARGET: 14.0
+    CLANG_ENABLE_MODULES: YES
+    ENABLE_STRICT_OBJC_MSGSEND: YES
+    SWIFT_STRICT_CONCURRENCY: complete
+    DEVELOPMENT_TEAM: ""
+configs:
+  Debug: debug
+  Release: release
+targets:
+  EZgateCore:
+    type: framework
+    platform: macOS
+    sources:
+      - EZgateCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.core
+        PRODUCT_NAME: EZgateCore
+        GENERATE_INFOPLIST_FILE: YES
+        DEFINES_MODULE: YES
+        OTHER_LDFLAGS: "$(inherited) -lsqlite3"
+  EZgateNetworkExtension:
+    type: system-extension
+    platform: macOS
+    sources:
+      - EZgateNetworkExtension
+    info:
+      path: EZgateNetworkExtension/Info.plist
+      properties:
+        CFBundleDisplayName: EZgate Network Extension
+        CFBundlePackageType: SYSX
+        NetworkExtension:
+          NEProviderClasses:
+            com.apple.networkextension.filter-data: "$(PRODUCT_MODULE_NAME).FilterDataProvider"
+    entitlements:
+      path: Config/EZgateNetworkExtension.entitlements
+    dependencies:
+      - target: EZgateCore
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.app.network-extension
+        PRODUCT_NAME: EZgateNetworkExtension
+        CODE_SIGN_ENTITLEMENTS: Config/EZgateNetworkExtension.entitlements
+        SKIP_INSTALL: YES
+        SYSTEM_EXTENSION_API_ONLY: YES
+  EZgate:
+    type: application
+    platform: macOS
+    sources:
+      - EZgateApp
+    info:
+      path: EZgateApp/Info.plist
+      properties:
+        CFBundleDisplayName: EZgate
+        CFBundleName: EZgate
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        LSMinimumSystemVersion: "14.0"
+        LSUIElement: true
+        NSHumanReadableCopyright: "Copyright © 2026 EZgate contributors"
+    entitlements:
+      path: Config/EZgate.entitlements
+    dependencies:
+      - target: EZgateCore
+        embed: true
+      - target: EZgateNetworkExtension
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.app
+        PRODUCT_NAME: EZgate
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_ENTITLEMENTS: Config/EZgate.entitlements
+  EZgateTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - EZgateTests
+    dependencies:
+      - target: EZgateCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.tests
+        GENERATE_INFOPLIST_FILE: YES
+  EZgateUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - EZgateUITests
+    dependencies:
+      - target: EZgate
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.uitests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  EZgate:
+    build:
+      targets:
+        EZgate: all
+        EZgateTests: [test]
+    test:
+      gatherCoverageData: true
+      targets:
+        - name: EZgateTests
+  EZgateNetworkExtension:
+    build:
+      targets:
+        EZgateNetworkExtension: all
+
