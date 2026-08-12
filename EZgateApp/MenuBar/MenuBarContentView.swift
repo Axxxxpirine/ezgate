@@ -6,6 +6,7 @@ struct MenuBarContentView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.openSettings) private var openSettings
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(spacing: 0) {
@@ -107,14 +108,21 @@ struct MenuBarContentView: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(model.visibleTraffic) { row in
-                            TrafficRow(
-                                row: row,
-                                isAllowed: model.isAllowed(row.identity),
-                                setAllowed: { model.setAllowed($0, for: row.identity) }
-                            )
-                            Divider().padding(.leading, 54)
+                            VStack(spacing: 0) {
+                                TrafficRow(
+                                    row: row,
+                                    isAllowed: model.isAllowed(row.identity),
+                                    setAllowed: { model.setAllowed($0, for: row.identity) }
+                                )
+                                Divider().padding(.leading, 54)
+                            }
+                            .transition(.opacity.combined(with: .scale(scale: 0.98)))
                         }
                     }
+                    .animation(
+                        reduceMotion ? nil : .snappy(duration: 0.38, extraBounce: 0),
+                        value: model.visibleTraffic.map(\.id)
+                    )
                 }
             }
         }
@@ -191,6 +199,7 @@ private struct TrafficMetric: View {
 }
 
 private struct TrafficRow: View {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let row: AppTraffic
     let isAllowed: Bool
     let setAllowed: (Bool) -> Void
@@ -226,7 +235,11 @@ private struct TrafficRow: View {
                 .accessibilityValue(isAllowed ? "Allowed" : "Blocked")
                 HStack(spacing: 8) {
                     Text("↓ \(ByteFormatter.rate(row.receivedBytesPerSecond))")
+                        .contentTransition(reduceMotion ? .identity : .numericText(value: row.receivedBytesPerSecond))
+                        .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: row.receivedBytesPerSecond)
                     Text("↑ \(ByteFormatter.rate(row.sentBytesPerSecond))")
+                        .contentTransition(reduceMotion ? .identity : .numericText(value: row.sentBytesPerSecond))
+                        .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: row.sentBytesPerSecond)
                 }
                 .font(.caption2.monospacedDigit())
                 .foregroundStyle(.secondary)
