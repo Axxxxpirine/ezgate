@@ -215,9 +215,19 @@ private struct TrafficRow: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel("\(row.identity.displayName) network access")
                 .accessibilityValue(isAllowed ? "Allowed" : "Blocked")
-                Text("↓ \(ByteFormatter.rate(row.receivedBytesPerSecond))")
-                    .font(.caption2.monospacedDigit())
-                    .foregroundStyle(.secondary)
+                HStack(spacing: 8) {
+                    Text("↓ \(ByteFormatter.rate(row.receivedBytesPerSecond))")
+                    Text("↑ \(ByteFormatter.rate(row.sentBytesPerSecond))")
+                }
+                .font(.caption2.monospacedDigit())
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: true, vertical: false)
+                .help("Real-time download and upload rates")
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("Real-time traffic")
+                .accessibilityValue(
+                    "Downloaded \(ByteFormatter.rate(row.receivedBytesPerSecond)), uploaded \(ByteFormatter.rate(row.sentBytesPerSecond))"
+                )
             }
         }
         .padding(.horizontal, 12)
