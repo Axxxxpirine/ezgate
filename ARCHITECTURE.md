@@ -10,7 +10,7 @@ EZgate separates user interface, policy, persistence, traffic sources, and privi
 EZgate.app
 ├── SwiftUI MenuBarExtra and Settings
 ├── AppModel (main-actor presentation state)
-├── MockTrafficProvider / future RealTrafficProvider
+├── RealTrafficProvider (App Group snapshot reader)
 └── EZgateCore.framework
     ├── models
     ├── RuleEngine and NetworkContextMatcher
@@ -65,7 +65,7 @@ SwiftData was not selected because the schema is simple, SQL aggregation is expl
 
 ## Performance
 
-Mock and real providers publish at approximately 1 Hz. Network Extension statistics use the system report cadence instead of payload peeking. Lists use stable application IDs and `LazyVStack`. Aggregation occurs before observable state changes. This design targets 100 processes and 1,000 active flows without one SwiftUI mutation per flow or packet.
+The real provider publishes at approximately 1 Hz. Network Extension statistics use the system report cadence instead of payload peeking. Lists use stable application IDs and `LazyVStack`. Aggregation occurs before observable state changes. This design targets 100 processes and 1,000 active flows without one SwiftUI mutation per flow or packet.
 
 ## Error states
 

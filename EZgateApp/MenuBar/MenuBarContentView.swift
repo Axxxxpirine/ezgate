@@ -11,7 +11,7 @@ struct MenuBarContentView: View {
             if model.hasCompletedOnboarding {
                 mainContent
             } else {
-                OnboardingView(onContinue: model.completeOnboarding)
+                OnboardingView()
             }
         }
         .frame(width: 420, height: 570)
@@ -91,7 +91,17 @@ struct MenuBarContentView: View {
     private var appList: some View {
         Group {
             if model.visibleTraffic.isEmpty {
-                ContentUnavailableView.search(text: model.searchText)
+                if model.searchText.isEmpty {
+                    ContentUnavailableView(
+                        model.filterController.status.isActive ? "No network activity yet" : "Network filter inactive",
+                        systemImage: "network.slash",
+                        description: Text(model.filterController.status.isActive
+                            ? "Applications appear here when they create new network connections."
+                            : "Install and approve the system extension to observe real traffic.")
+                    )
+                } else {
+                    ContentUnavailableView.search(text: model.searchText)
+                }
             } else {
                 ScrollView {
                     LazyVStack(spacing: 0) {
@@ -113,9 +123,18 @@ struct MenuBarContentView: View {
     private var footer: some View {
         HStack {
             Button {
-                model.setFilteringPaused(!model.filteringPaused)
+                if model.filterController.status.isActive {
+                    model.setFilteringPaused(!model.filteringPaused)
+                } else {
+                    model.activateFilter()
+                }
             } label: {
-                Label(model.filteringPaused ? "Filtering paused" : "Filtering active", systemImage: "shield.lefthalf.filled")
+                Label(
+                    model.filterController.status.isActive
+                        ? (model.filteringPaused ? "Filtering paused" : "Filtering active")
+                        : model.filterController.status.label,
+                    systemImage: "shield.lefthalf.filled"
+                )
             }
             .buttonStyle(.plain)
             Spacer()
@@ -136,14 +155,6 @@ struct MenuBarContentView: View {
             .fixedSize()
         }
         .padding(12)
-        .overlay(alignment: .topLeading) {
-            if model.isMockMode {
-                Text("Mock Network Data")
-                    .font(.caption2.weight(.semibold))
-                    .foregroundStyle(.orange)
-                    .offset(x: 14, y: -18)
-            }
-        }
     }
 
     private var networkDescription: String {

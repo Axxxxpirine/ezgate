@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    let onContinue: () -> Void
+    @Environment(AppModel.self) private var model
 
     var body: some View {
         VStack(spacing: 22) {
@@ -19,19 +19,31 @@ struct OnboardingView: View {
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 36)
-            Label("This build uses clearly labelled mock traffic until the Network Extension is signed and approved.", systemImage: "hammer")
+            Label(model.filterController.status.label, systemImage: "network.badge.shield.half.filled")
                 .font(.callout)
                 .padding(12)
-                .background(.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 10))
+                .background(.blue.opacity(0.10), in: RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal, 24)
-            Button("Continue") { onContinue() }
+            Button(model.filterController.status.isActive ? "Continue" : "Install Network Filter") {
+                if model.filterController.status.isActive {
+                    model.completeOnboarding()
+                } else {
+                    model.activateFilter()
+                }
+            }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .keyboardShortcut(.defaultAction)
                 .accessibilityIdentifier("completeOnboarding")
+            if model.filterController.status == .awaitingApproval {
+                Text("Approve EZgate in System Settings → General → Login Items & Extensions, then return here.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 36)
+            }
             Spacer()
         }
         .padding()
     }
 }
-

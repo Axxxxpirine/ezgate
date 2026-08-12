@@ -15,12 +15,12 @@ final class AppModel {
     var sortOrder: TrafficSortOrder = .total
     var todayTotals = TrafficTotals()
     var errorMessage: String?
-    var isMockMode = true
     var hasCompletedOnboarding: Bool
     var refreshFrequency = 1.0
 
     let networkMonitor = NetworkContextMonitor()
     let launchAtLogin = LaunchAtLoginController()
+    let filterController = FilterController()
 
     private let ruleEngine = RuleEngine()
     private let profileStore: ProfileStore
@@ -33,7 +33,7 @@ final class AppModel {
     private let logger = Logger(subsystem: "ch.ezgate.app", category: "ui")
 
     init(
-        provider: any TrafficProvider = MockTrafficProvider(),
+        provider: any TrafficProvider = RealTrafficProvider(),
         profileStore: ProfileStore = ProfileStore(),
         statisticsStore: StatisticsStore = StatisticsStore()
     ) {
@@ -101,6 +101,8 @@ final class AppModel {
             self?.networkContextDidChange(context)
         }
         networkMonitor.start()
+        filterController.refresh()
+        await writeSharedRules(revision: configurationRevision)
         streamTask = Task { [weak self, provider] in
             for await update in provider.updates() {
                 guard let self, !Task.isCancelled else { return }
@@ -112,6 +114,10 @@ final class AppModel {
     func completeOnboarding() {
         hasCompletedOnboarding = true
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+    }
+
+    func activateFilter() {
+        filterController.activate()
     }
 
     func selectProfile(_ id: UUID) {

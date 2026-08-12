@@ -9,6 +9,7 @@ final class FilterDataProvider: NEFilterDataProvider {
     private let logger = Logger(subsystem: "ch.ezgate.app.network-extension", category: "filtering")
     private var snapshot: SharedRuleSnapshot?
     private var lastRulesModificationDate: Date?
+    private let trafficAccumulator = TrafficReportAccumulator()
 
     override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
         reloadRules()
@@ -54,6 +55,22 @@ final class FilterDataProvider: NEFilterDataProvider {
         return verdict
     }
 
+    override func handle(_ report: NEFilterReport) {
+        guard let flow = report.flow,
+              report.event == .statistics || report.event == .flowClosed else { return }
+        let signingIdentifier = FlowIdentityResolver.signingIdentifier(for: flow)
+        let event = TrafficReportEvent(
+            flowIdentifier: flow.identifier.uuidString,
+            signingIdentifier: signingIdentifier,
+            receivedBytes: UInt64(report.bytesInboundCount),
+            sentBytes: UInt64(report.bytesOutboundCount),
+            isClosed: report.event == .flowClosed,
+            timestamp: .now
+        )
+        let accumulator = trafficAccumulator
+        Task { await accumulator.record(event) }
+    }
+
     private func reloadRules() {
         guard let containerURL = FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: SharedRuleSnapshotStore.appGroupIdentifier
@@ -79,6 +96,80 @@ final class FilterDataProvider: NEFilterDataProvider {
         let fileURL = SharedRuleSnapshotStore.fileURL(containerURL: containerURL)
         let modificationDate = try? fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
         if modificationDate != lastRulesModificationDate { reloadRules() }
+    }
+}
+
+private struct TrafficReportEvent: Sendable {
+    let flowIdentifier: String
+    let signingIdentifier: String?
+    let receivedBytes: UInt64
+    let sentBytes: UInt64
+    let isClosed: Bool
+    let timestamp: Date
+}
+
+private actor TrafficReportAccumulator {
+    private struct FlowTotals: Sendable {
+        var receivedBytes: UInt64
+        var sentBytes: UInt64
+        var timestamp: Date
+    }
+
+    private var flows: [String: FlowTotals] = [:]
+    private var applications: [String: AppTraffic] = [:]
+    private var lastPublishDate = Date.distantPast
+
+    func record(_ event: TrafficReportEvent) {
+        let key = event.signingIdentifier ?? "unknown"
+        let previous = flows[event.flowIdentifier]
+        let receivedDelta = event.receivedBytes >= (previous?.receivedBytes ?? 0)
+            ? event.receivedBytes - (previous?.receivedBytes ?? 0) : 0
+        let sentDelta = event.sentBytes >= (previous?.sentBytes ?? 0)
+            ? event.sentBytes - (previous?.sentBytes ?? 0) : 0
+        let interval = max(event.timestamp.timeIntervalSince(previous?.timestamp ?? event.timestamp), 1)
+
+        var row = applications[key] ?? AppTraffic(
+            identity: AppIdentity(
+                bundleIdentifier: event.signingIdentifier,
+                signingIdentifier: event.signingIdentifier,
+                displayName: event.signingIdentifier ?? "Unknown application"
+            ),
+            receivedBytes: 0,
+            sentBytes: 0
+        )
+        row.receivedBytes &+= receivedDelta
+        row.sentBytes &+= sentDelta
+        row.receivedBytesPerSecond = Double(receivedDelta) / interval
+        row.sentBytesPerSecond = Double(sentDelta) / interval
+        applications[key] = row
+
+        if event.isClosed {
+            flows.removeValue(forKey: event.flowIdentifier)
+        } else {
+            flows[event.flowIdentifier] = FlowTotals(
+                receivedBytes: event.receivedBytes,
+                sentBytes: event.sentBytes,
+                timestamp: event.timestamp
+            )
+        }
+
+        guard event.timestamp.timeIntervalSince(lastPublishDate) >= 0.75,
+              let containerURL = FileManager.default.containerURL(
+                forSecurityApplicationGroupIdentifier: SharedRuleSnapshotStore.appGroupIdentifier
+              ) else { return }
+        do {
+            let snapshot = SharedTrafficSnapshot(
+                updatedAt: event.timestamp,
+                applications: applications.values.sorted { $0.totalBytes > $1.totalBytes }
+            )
+            try SharedTrafficSnapshotStore.write(
+                snapshot,
+                to: SharedTrafficSnapshotStore.fileURL(containerURL: containerURL)
+            )
+            lastPublishDate = event.timestamp
+        } catch {
+            // The next report retries the atomic snapshot write.
+        }
     }
 }
 
