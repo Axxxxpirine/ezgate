@@ -92,7 +92,7 @@ The UI, domain logic, persistence, and filtering target are separated. `RuleEngi
 
 - The shipped app selects `MockTrafficProvider`; mock traffic is visibly labelled.
 - Signed activation/configuration of the system extension is not possible without an Apple Developer team and profiles.
-- The control-provider report bridge and `RealTrafficProvider` are the next real-network milestone.
+- The `NEFilterReport` App Group bridge and `RealTrafficProvider` are the next real-network milestone.
 - SSID access depends on current macOS privacy authorization; iPhone hotspot identity cannot be guaranteed.
 - Content Filters allow or drop traffic but do not provide general bandwidth shaping.
 - Temporary rules, quotas, domain history, charts, and export are intentionally outside this MVP.
@@ -108,4 +108,3 @@ See `CONTRIBUTING.md`. Contributions must use public Apple APIs and must not cop
 ## License
 
 MIT. See `LICENSE` and `LICENSE_DECISION.md`.
-

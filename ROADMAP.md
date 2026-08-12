@@ -11,6 +11,7 @@
 - atomic profile/rule persistence
 - SQLite Session/Today storage primitives
 - NWPath network-context monitor
+- automatic profile application from configured network signatures
 - Content Filter system-extension target and audit-token signing resolver
 - core unit test suite and required project documentation
 
@@ -18,7 +19,7 @@
 
 - add system-extension activation coordinator and explicit onboarding states
 - configure `NEFilterManager` with user-visible error handling
-- add the control/report provider required for `NEFilterReport`
+- implement the data provider's `NEFilterReport` aggregation path
 - aggregate report byte counters by signing/bundle identifier
 - publish compact App Group report snapshots
 - add `RealTrafficProvider` and retain one-click mock selection for development
@@ -27,7 +28,6 @@
 
 ## Next: complete MVP
 
-- automatic profile application from configured network signatures
 - permission-aware SSID mapping UI
 - robust today/session rollups and cleanup/retention
 - signed onboarding, deactivation, and recovery paths
@@ -45,4 +45,3 @@
 - application groups and profile import/export
 - Shortcuts, CLI, widgets, and advanced charts
 - bandwidth limits only if a separate public-API feasibility study finds a legitimate low-overhead design
-
