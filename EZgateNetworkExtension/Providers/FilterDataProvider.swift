@@ -163,6 +163,12 @@ private final class FilterIPCServer: NSObject, NSXPCListenerDelegate, FilterIPCP
     func trafficSnapshot(withReply reply: @escaping (Data?) -> Void) {
         reply(trafficAccumulator.encodedSnapshot())
     }
+
+    func resetTraffic(withReply reply: @escaping (Bool) -> Void) {
+        trafficAccumulator.reset()
+        logger.notice("Reset traffic counters")
+        reply(true)
+    }
 }
 
 private struct TrafficReportEvent: Sendable {
@@ -237,6 +243,14 @@ private final class TrafficReportAccumulator: @unchecked Sendable {
                 applications: applications.values.sorted { $0.totalBytes > $1.totalBytes }
             )
             return try? JSONEncoder().encode(snapshot)
+        }
+    }
+
+    func reset() {
+        lock.withLock {
+            applications.removeAll()
+            lastUpdateDate = .now
+            hasLoggedFirstSnapshot = false
         }
     }
 }

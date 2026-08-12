@@ -19,6 +19,7 @@
 		2D21F351894200C815B3BC8F /* RuleEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961E6A473A8AC2605694986D /* RuleEngineTests.swift */; };
 		333516FD69CAEAA3A4889EE1 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B43107DC026C1DB863907A /* MenuBarContentView.swift */; };
 		3748FAFD56B54E6F6B187053 /* TrafficAggregatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D1C2DE13B090E5137015C4 /* TrafficAggregatorTests.swift */; };
+		39CB0CE4159BBE07D98BEC6F /* StatisticsResetCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77276A7A86057ADE0ECEA93 /* StatisticsResetCLI.swift */; };
 		3D9B5BC6703A2843C01BF465 /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8566B2933A37546909375E /* UtilityTests.swift */; };
 		40820E5939C79DAAF43F9969 /* RuleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */; };
 		4AA225C992FDEAECF8F2C8AF /* FilterIPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */; };
@@ -187,6 +188,7 @@
 		DF75F6DFCF2A128725A8CD04 /* StatisticsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsStore.swift; sourceTree = "<group>"; };
 		E04CA29DD8188F378F75DF0E /* TrafficModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficModels.swift; sourceTree = "<group>"; };
 		F04E7037B79635F5A135D8B8 /* RealTrafficProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTrafficProvider.swift; sourceTree = "<group>"; };
+		F77276A7A86057ADE0ECEA93 /* StatisticsResetCLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsResetCLI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 				38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */,
 				8A197872B525571C24AF8ED7 /* NetworkContextMonitor.swift */,
 				F04E7037B79635F5A135D8B8 /* RealTrafficProvider.swift */,
+				F77276A7A86057ADE0ECEA93 /* StatisticsResetCLI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				1380B57F3620E7CD5BF72BE8 /* RealTrafficProvider.swift in Sources */,
 				FD27D043DC41152A1C16CCDE /* SettingsView.swift in Sources */,
 				8E89A8D204FD821F57AF99F2 /* StatisticsDashboardView.swift in Sources */,
+				39CB0CE4159BBE07D98BEC6F /* StatisticsResetCLI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
