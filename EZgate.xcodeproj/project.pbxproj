@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01EBB984DAD053089F928FE8 /* ActiveFlowRuleEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E667ADA6CE40A9A9043965 /* ActiveFlowRuleEvaluatorTests.swift */; };
 		050A8EE1C86C626CF86D6ACD /* StatisticsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */; };
 		05993EE676CCE8EDA5063FD7 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B40718DF78477C8D828F45E /* Rules.swift */; };
 		088FAB37AF3C685B8A5DC9B9 /* SharedTrafficSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F7FCB85D0EE57228AC953C /* SharedTrafficSnapshot.swift */; };
@@ -31,6 +32,7 @@
 		65C89AE486892946ACE5E516 /* TrafficRateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405A38A3BAE61C46C221C45 /* TrafficRateCalculator.swift */; };
 		6E58F094E22902D0159E5DAF /* FilterIPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71E8A7ABAEFBB41DDEF421E /* FilterIPCClient.swift */; };
 		74B709175ED863228762C3B8 /* LaunchAtLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */; };
+		7CA089C51CE8C795CC03DA4D /* ActiveFlowRuleEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F536FE4954EAB6F95A015AA /* ActiveFlowRuleEvaluator.swift */; };
 		7E54396D2210200A6A250F80 /* TrafficModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04CA29DD8188F378F75DF0E /* TrafficModels.swift */; };
 		8049E4CCD8440D4E4C9B821B /* EZgateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B246BD45962DDF5467610DB /* EZgateApp.swift */; };
 		8440DB30E0DE9003D1CCA71A /* EZgateNetworkExtension.systemextension in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 51D7308E17F1DF4CDF0A574D /* EZgateNetworkExtension.systemextension */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -142,6 +144,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02E667ADA6CE40A9A9043965 /* ActiveFlowRuleEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFlowRuleEvaluatorTests.swift; sourceTree = "<group>"; };
 		0F1EF802A02D961385F93FB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		14B43107DC026C1DB863907A /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
 		24FB2F328C82C023F603D8C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -151,6 +154,7 @@
 		35753174145562501BF0169A /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
 		38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
 		3B2752ED8BF93D3BA4077EAF /* FilterIPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIPC.swift; sourceTree = "<group>"; };
+		3F536FE4954EAB6F95A015AA /* ActiveFlowRuleEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFlowRuleEvaluator.swift; sourceTree = "<group>"; };
 		41DE9202A29401576AF0BF0C /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
 		465F7F0139A37352C9293F7C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		49196F42AB7A01B508CFB8B5 /* StatisticsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModels.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 		39E485E3FE9255C125DA1954 /* EZgateTests */ = {
 			isa = PBXGroup;
 			children = (
+				02E667ADA6CE40A9A9043965 /* ActiveFlowRuleEvaluatorTests.swift */,
 				35753174145562501BF0169A /* ProfileStoreTests.swift */,
 				961E6A473A8AC2605694986D /* RuleEngineTests.swift */,
 				5E3847C32EB3902DC1CAF635 /* StatisticsStoreTests.swift */,
@@ -383,6 +388,7 @@
 		E54CF233C9EF7E7780877F02 /* Rules */ = {
 			isa = PBXGroup;
 			children = (
+				3F536FE4954EAB6F95A015AA /* ActiveFlowRuleEvaluator.swift */,
 				817E90B28EDCAD7F6AAB4F3C /* NetworkContextMatcher.swift */,
 				A532239C8EA2E49D1B1AB53C /* RuleEngine.swift */,
 			);
@@ -596,6 +602,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA089C51CE8C795CC03DA4D /* ActiveFlowRuleEvaluator.swift in Sources */,
 				8B9A1D326558ECFB3370F830 /* AppIdentity.swift in Sources */,
 				8AE1BA401A65C305D1CEA771 /* ByteFormatter.swift in Sources */,
 				4AA225C992FDEAECF8F2C8AF /* FilterIPC.swift in Sources */,
@@ -621,6 +628,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01EBB984DAD053089F928FE8 /* ActiveFlowRuleEvaluatorTests.swift in Sources */,
 				CC8D13AD15B5038D1000664A /* ProfileStoreTests.swift in Sources */,
 				2D21F351894200C815B3BC8F /* RuleEngineTests.swift in Sources */,
 				0F058BDCBB332A70C43AB3CF /* StatisticsStoreTests.swift in Sources */,

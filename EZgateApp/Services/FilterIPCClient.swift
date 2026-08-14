@@ -69,7 +69,10 @@ final class FilterIPCClient: @unchecked Sendable {
         lock.lock()
         defer { lock.unlock() }
         if let connection { return connection }
-        let newConnection = NSXPCConnection(machServiceName: FilterIPCConfiguration.machServiceName)
+        let newConnection = NSXPCConnection(
+            machServiceName: FilterIPCConfiguration.machServiceName,
+            options: .privileged
+        )
         newConnection.remoteObjectInterface = NSXPCInterface(with: FilterIPCProtocol.self)
         newConnection.invalidationHandler = { [weak self] in self?.invalidateConnection() }
         newConnection.interruptionHandler = { [weak self] in self?.invalidateConnection() }
