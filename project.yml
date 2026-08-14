@@ -40,8 +40,8 @@ targets:
       properties:
         CFBundleDisplayName: EZgate Network Extension
         CFBundlePackageType: SYSX
-        CFBundleShortVersionString: "0.1.12"
-        CFBundleVersion: "13"
+        CFBundleShortVersionString: "0.1.15"
+        CFBundleVersion: "16"
         NSSystemExtensionUsageDescription: "EZgate installs a local network filter to show which applications use the network and enforce your Allow or Block rules."
         NetworkExtension:
           NEMachServiceName: "group.ch.ezgate.shared.filter"

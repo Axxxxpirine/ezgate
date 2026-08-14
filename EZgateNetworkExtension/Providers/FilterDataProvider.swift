@@ -6,17 +6,22 @@ import EZgateCore
 
 final class FilterDataProvider: NEFilterDataProvider {
     private let ruleEngine = RuleEngine()
+    private let activeFlowRuleEvaluator = ActiveFlowRuleEvaluator()
     private let logger = Logger(subsystem: "ch.ezgate.app.network-extension", category: "filtering")
     private let ruleState = RuleState()
     private let trafficAccumulator = TrafficReportAccumulator()
     private let flowIdentityCache = FlowIdentityCache()
+    private let activeFlowRegistry = ActiveFlowRegistry()
     private var ipcServer: FilterIPCServer?
 
     override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
         ipcServer = FilterIPCServer(
             machServiceName: FilterIPCConfiguration.machServiceName,
             ruleState: ruleState,
-            trafficAccumulator: trafficAccumulator
+            trafficAccumulator: trafficAccumulator,
+            rulesDidChange: { [weak self] snapshot in
+                self?.enforceRulesOnActiveFlows(snapshot)
+            }
         )
         ipcServer?.start()
 
@@ -38,10 +43,6 @@ final class FilterDataProvider: NEFilterDataProvider {
     }
 
     override func handleNewFlow(_ flow: NEFilterFlow) -> NEFilterNewFlowVerdict {
-        guard let snapshot = ruleState.load() else {
-            return reportingVerdict(allowed: true)
-        }
-
         let identifier = FlowIdentityResolver.signingIdentifier(for: flow)
         flowIdentityCache.store(identifier, for: flow.identifier.uuidString)
         let identity = AppIdentity(
@@ -49,12 +50,21 @@ final class FilterDataProvider: NEFilterDataProvider {
             signingIdentifier: identifier,
             displayName: identifier ?? "Unknown application"
         )
-        let decision = ruleEngine.decide(
-            for: identity,
-            profile: snapshot.activeProfile,
-            filteringPaused: snapshot.filteringPaused
-        )
-        return reportingVerdict(allowed: decision.isAllowed)
+        let allowed: Bool
+        if let snapshot = ruleState.load() {
+            allowed = ruleEngine.decide(
+                for: identity,
+                profile: snapshot.activeProfile,
+                filteringPaused: snapshot.filteringPaused
+            ).isAllowed
+        } else {
+            allowed = true
+        }
+
+        if allowed, let socketFlow = flow as? NEFilterSocketFlow {
+            activeFlowRegistry.store(socketFlow, identity: identity)
+        }
+        return reportingVerdict(allowed: allowed)
     }
 
     override func handle(_ report: NEFilterReport) {
@@ -81,7 +91,24 @@ final class FilterDataProvider: NEFilterDataProvider {
         )
         if report.event == .flowClosed {
             flowIdentityCache.remove(for: flowIdentifier)
+            activeFlowRegistry.remove(for: flowIdentifier)
         }
+    }
+
+    private func enforceRulesOnActiveFlows(_ snapshot: SharedRuleSnapshot) {
+        let blockedFlows = activeFlowRegistry.takeBlockedFlows(
+            using: snapshot,
+            evaluator: activeFlowRuleEvaluator
+        )
+        guard !blockedFlows.isEmpty else { return }
+
+        for flow in blockedFlows {
+            let verdict = NEFilterDataVerdict.drop()
+            verdict.shouldReport = true
+            verdict.statisticsReportFrequency = .medium
+            update(flow, using: verdict, for: .any)
+        }
+        logger.notice("Dropped \(blockedFlows.count) active flow(s) after a rule update")
     }
 
     private func reportingVerdict(allowed: Bool) -> NEFilterNewFlowVerdict {
@@ -89,6 +116,42 @@ final class FilterDataProvider: NEFilterDataProvider {
         verdict.shouldReport = true
         verdict.statisticsReportFrequency = .medium
         return verdict
+    }
+}
+
+private final class ActiveFlowRegistry: @unchecked Sendable {
+    private struct Entry {
+        let flow: NEFilterSocketFlow
+        let identity: AppIdentity
+    }
+
+    private let lock = NSLock()
+    private var entries: [String: Entry] = [:]
+
+    func store(_ flow: NEFilterSocketFlow, identity: AppIdentity) {
+        lock.withLock {
+            entries[flow.identifier.uuidString] = Entry(flow: flow, identity: identity)
+        }
+    }
+
+    func remove(for flowIdentifier: String) {
+        lock.withLock { _ = entries.removeValue(forKey: flowIdentifier) }
+    }
+
+    func takeBlockedFlows(
+        using snapshot: SharedRuleSnapshot,
+        evaluator: ActiveFlowRuleEvaluator
+    ) -> [NEFilterSocketFlow] {
+        lock.withLock {
+            let identities = entries.mapValues(\.identity)
+            let blockedIdentifiers = evaluator.blockedFlowIdentifiers(
+                in: identities,
+                snapshot: snapshot
+            )
+            return blockedIdentifiers.compactMap { identifier in
+                entries.removeValue(forKey: identifier)?.flow
+            }
+        }
     }
 }
 
@@ -131,11 +194,18 @@ private final class FilterIPCServer: NSObject, NSXPCListenerDelegate, FilterIPCP
     private let listener: NSXPCListener
     private let ruleState: RuleState
     private let trafficAccumulator: TrafficReportAccumulator
+    private let rulesDidChange: (SharedRuleSnapshot) -> Void
 
-    init(machServiceName: String, ruleState: RuleState, trafficAccumulator: TrafficReportAccumulator) {
+    init(
+        machServiceName: String,
+        ruleState: RuleState,
+        trafficAccumulator: TrafficReportAccumulator,
+        rulesDidChange: @escaping (SharedRuleSnapshot) -> Void
+    ) {
         listener = NSXPCListener(machServiceName: machServiceName)
         self.ruleState = ruleState
         self.trafficAccumulator = trafficAccumulator
+        self.rulesDidChange = rulesDidChange
         super.init()
         listener.delegate = self
     }
@@ -156,6 +226,7 @@ private final class FilterIPCServer: NSObject, NSXPCListenerDelegate, FilterIPCP
             return
         }
         ruleState.store(snapshot)
+        rulesDidChange(snapshot)
         logger.notice("Accepted rule snapshot revision \(snapshot.revision)")
         reply(true)
     }
