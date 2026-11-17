@@ -106,6 +106,10 @@ The UI, domain logic, persistence, and filtering target are separated. `RuleEngi
 
 See `ROADMAP.md`.
 
+## Contact
+
+Questions and feedback: [info@xprn.dev](mailto:info@xprn.dev). For security issues, follow `SECURITY.md`.
+
 ## Contributing
 
 See `CONTRIBUTING.md`. Contributions must use public Apple APIs and must not copy proprietary products or incompatible licensed code.

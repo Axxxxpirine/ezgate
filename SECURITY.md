@@ -20,7 +20,7 @@ Certificates, private keys, provisioning profiles, Team-specific secrets, tokens
 
 ## Reporting a vulnerability
 
-Report vulnerabilities privately through GitHub: **Security → Report a vulnerability** on this repository. Do not include personal traffic metadata, packet captures, credentials, or exploitable details in a public issue.
+Report vulnerabilities privately through GitHub: **Security → Report a vulnerability** on this repository, or by email to [info@xprn.dev](mailto:info@xprn.dev). Do not include personal traffic metadata, packet captures, credentials, or exploitable details in a public issue.
 
 Reports should identify the affected commit/version, macOS version, reproduction prerequisites, impact, and a safe proof of concept. Maintainers should acknowledge reports promptly and coordinate disclosure after a fix is available.
 
