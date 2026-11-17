@@ -57,7 +57,8 @@ Yes. TN3134 states that a macOS Content Filter packaged as a System Extension su
 - hardened runtime and inside-out code signing
 - notarization and stapling for normal Gatekeeper distribution
 - user approval of the system extension/content filter
-- no assumption that Xcode automatically fixes mismatched exported entitlements
+- no assumption that Xcode automatically fixes mismatched exported entitlements; verified with Xcode 26.6: a `developer-id` export of an archive built with `content-filter-provider` re-signs both targets with `content-filter-provider-systemextension` and matching Developer ID profiles, but the result must still be checked with `codesign -d --entitlements -`
+- hardened runtime (`ENABLE_HARDENED_RUNTIME`) on every target, required by notarization
 
 No certificate, profile, secret, or Team ID is committed. Each developer sets their Team ID in the ignored `Config/Local.xcconfig`.
 

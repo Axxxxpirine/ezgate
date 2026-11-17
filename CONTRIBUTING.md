@@ -27,6 +27,12 @@ Contributions are made under MIT. Do not paste GPL-incompatible code into the re
 
 `project.yml` is the source of truth for targets and build settings. After adding source files or changing target configuration, regenerate `EZgate.xcodeproj` and include the generated project change.
 
+## Releasing (maintainers)
+
+1. Bump `CFBundleShortVersionString` of both targets and `EZGATE_FILTER_BUILD` in `project.yml`, then run `xcodegen generate`. macOS only replaces an installed filter with a higher build, and the build number is also part of the XPC service name so an update works without a restart.
+2. Archive the `EZgate` scheme in Release, export it with method `developer-id` and destination `upload` to notarize it, then run `xcodebuild -exportNotarizedApp`.
+3. Check `spctl -a -vv -t exec EZgate.app` reports `Notarized Developer ID`, zip the app with `ditto -c -k --keepParent`, and attach it to a GitHub release with its SHA-256.
+
 ## Suggested commit style
 
 Use small, working commits such as `feat: add traffic report bridge` or `test: cover profile fallback`. Do not intentionally commit a broken build.

@@ -12,6 +12,7 @@ settings:
     CLANG_ENABLE_MODULES: YES
     ENABLE_STRICT_OBJC_MSGSEND: YES
     SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_HARDENED_RUNTIME: YES
     CODE_SIGN_STYLE: Automatic
 configs:
   Debug: debug
@@ -42,11 +43,13 @@ targets:
       properties:
         CFBundleDisplayName: EZgate Network Extension
         CFBundlePackageType: SYSX
-        CFBundleShortVersionString: "0.1.15"
-        CFBundleVersion: "16"
+        CFBundleShortVersionString: "0.2.0"
+        CFBundleVersion: "$(EZGATE_FILTER_BUILD)"
         NSSystemExtensionUsageDescription: "EZgate installs a local network filter to show which applications use the network and enforce your Allow or Block rules."
         NetworkExtension:
-          NEMachServiceName: "group.ch.ezgate.shared.filter"
+          # Versioned so an updated filter never collides with the previous one,
+          # whose launchd endpoint stays registered until the next restart.
+          NEMachServiceName: "group.ch.ezgate.shared.filter.$(EZGATE_FILTER_BUILD)"
           NEProviderClasses:
             com.apple.networkextension.filter-data: "$(PRODUCT_MODULE_NAME).FilterDataProvider"
     entitlements:
@@ -62,6 +65,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: ch.ezgate.app.network-extension
+        # Increase on every filter change: macOS only replaces a system extension with a higher build.
+        EZGATE_FILTER_BUILD: 19
         PRODUCT_NAME: ch.ezgate.app.network-extension
         PRODUCT_MODULE_NAME: EZgateNetworkExtension
         CODE_SIGN_ENTITLEMENTS: Config/EZgateNetworkExtension.entitlements
@@ -78,8 +83,8 @@ targets:
       properties:
         CFBundleDisplayName: EZgate
         CFBundleName: EZgate
-        CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "1"
+        CFBundleShortVersionString: "0.2.0"
+        CFBundleVersion: "2"
         LSMinimumSystemVersion: "14.0"
         LSUIElement: true
         NSHumanReadableCopyright: "Copyright © 2026 EZgate contributors"

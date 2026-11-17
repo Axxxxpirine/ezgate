@@ -752,6 +752,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -896,6 +897,7 @@
 				CODE_SIGN_ENTITLEMENTS = Config/EZgateNetworkExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_NAME = "ch.ezgate.app.network-extension";
+				EZGATE_FILTER_BUILD = 19;
 				INFOPLIST_FILE = EZgateNetworkExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -988,6 +990,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1016,6 +1019,7 @@
 				CODE_SIGN_ENTITLEMENTS = Config/EZgateNetworkExtension.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_NAME = "ch.ezgate.app.network-extension";
+				EZGATE_FILTER_BUILD = 19;
 				INFOPLIST_FILE = EZgateNetworkExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

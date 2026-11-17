@@ -31,21 +31,23 @@ EZgate shows real traffic only. A Network Extension system extension enforces al
 
 ## Screenshots
 
-Screenshots will be added after the visual identity and signed Network Extension onboarding are finalized.
-
-## Requirements
-
-- macOS 14 Sonoma or newer
-- Apple Silicon is the primary development architecture
-- Xcode 16 or newer; the project is currently verified with Xcode 26.6 and Swift 6.3.3
-- XcodeGen only when regenerating `EZgate.xcodeproj` from `project.yml`
-- An Apple Developer Program team and Network Extension provisioning for real filtering
+Screenshots are coming with the next update.
 
 ## Installation
 
-There is no notarized binary yet, so EZgate currently has to be built from source. Running the real filter requires a paid Apple Developer Program membership: Network Extension entitlements are not available to free accounts.
+1. Download `EZgate-<version>.zip` from the [latest release](https://github.com/Axxxxpirine/ezgate/releases/latest). The app is signed with Developer ID and notarized by Apple.
+2. Unzip it and move `EZgate.app` to `/Applications`. macOS only installs the network filter from there.
+3. Open EZgate, click **Install Network Filter**, then approve EZgate in **System Settings → General → Login Items & Extensions** when macOS asks.
+
+Requires macOS 14 Sonoma or newer, on Apple Silicon or Intel.
 
 ## Build from source
+
+Requirements:
+
+- Xcode 16 or newer; the project is currently verified with Xcode 26.6 and Swift 6.3.3
+- XcodeGen when regenerating `EZgate.xcodeproj` from `project.yml`
+- A paid Apple Developer Program membership to run the filter you build: Network Extension entitlements are not available to free accounts
 
 No Team ID is committed. To sign with your own team, copy `Config/Local.xcconfig.example` to `Config/Local.xcconfig` (ignored by git) and set `DEVELOPMENT_TEAM`. Your Apple Developer account must have the Network Extension and System Extension capabilities and an App Group matching the identifiers in `project.yml`.
 
@@ -94,7 +96,7 @@ The UI, domain logic, persistence, and filtering target are separated. `RuleEngi
 
 ## Known limitations
 
-- Signed activation/configuration of the system extension is not possible without an Apple Developer team and profiles.
+- Builds from source can only activate the filter when signed by a paid Apple Developer team with Network Extension profiles.
 - SSID access depends on current macOS privacy authorization; iPhone hotspot identity cannot be guaranteed.
 - Content Filters allow or drop traffic but do not provide general bandwidth shaping.
 - Rules are held in the extension's memory. After a restart, traffic is allowed until the EZgate app is running again; enable Launch at Login to keep filtering continuous.

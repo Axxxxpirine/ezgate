@@ -18,11 +18,12 @@
 - immediate blocking of already-open connections after a rule change
 - Network Statistics window with periods, chart, and per-app breakdown
 - reset of history and live counters
+- Developer ID signed, notarized release
+- filter updates without a restart (XPC service name versioned per filter build)
 - core unit test suite and required project documentation
 
 ## Next: public release
 
-- Developer ID signing, notarization, and a downloadable release
 - persist rules inside the extension so filtering survives a restart before the app launches
 - explicit deactivation, denied, and recovery states in the UI
 - resolve app names, executable URLs, icons, PIDs, and helper groups on the appropriate side
