@@ -26,13 +26,15 @@ final class FilterDataProvider: NEFilterDataProvider {
         ipcServer?.start()
 
         let settings = NEFilterSettings(rules: [], defaultAction: .filterData)
-        apply(settings) { [weak self] error in
+        let logger = logger
+        nonisolated(unsafe) let completion = completionHandler
+        apply(settings) { error in
             if let error {
-                self?.logger.error("Unable to apply filter settings: \(error.localizedDescription, privacy: .public)")
+                logger.error("Unable to apply filter settings: \(error.localizedDescription, privacy: .public)")
             } else {
-                self?.logger.notice("EZgate filter started with XPC communication")
+                logger.notice("EZgate filter started with XPC communication")
             }
-            completionHandler(error)
+            completion(error)
         }
     }
 
@@ -210,10 +212,33 @@ private final class FilterIPCServer: NSObject, NSXPCListenerDelegate, FilterIPCP
         listener.delegate = self
     }
 
+    private static let clientRequirement = FilterIPCConfiguration.clientCodeSigningRequirement(
+        teamIdentifier: ownTeamIdentifier()
+    )
+
+    private static func ownTeamIdentifier() -> String? {
+        var code: SecCode?
+        guard SecCodeCopySelf([], &code) == errSecSuccess, let code else { return nil }
+        var staticCode: SecStaticCode?
+        guard SecCodeCopyStaticCode(code, [], &staticCode) == errSecSuccess, let staticCode else { return nil }
+        var information: CFDictionary?
+        let flags = SecCSFlags(rawValue: kSecCSSigningInformation)
+        guard SecCodeCopySigningInformation(staticCode, flags, &information) == errSecSuccess,
+              let information = information as? [String: Any] else { return nil }
+        return information[kSecCodeInfoTeamIdentifier as String] as? String
+    }
+
     func start() { listener.activate() }
     func stop() { listener.invalidate() }
 
     func listener(_ listener: NSXPCListener, shouldAcceptNewConnection connection: NSXPCConnection) -> Bool {
+        // The filter runs as root: only the EZgate app signed by the same team may
+        // change rules, read per-app traffic, or reset counters.
+        guard let requirement = Self.clientRequirement else {
+            logger.error("Rejected XPC client: the filter has no valid Team ID")
+            return false
+        }
+        connection.setCodeSigningRequirement(requirement)
         connection.exportedInterface = NSXPCInterface(with: FilterIPCProtocol.self)
         connection.exportedObject = self
         connection.activate()

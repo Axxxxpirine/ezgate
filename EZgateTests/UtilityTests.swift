@@ -2,6 +2,20 @@ import XCTest
 @testable import EZgateCore
 
 final class UtilityTests: XCTestCase {
+    func testFilterIPCRequirementPinsAppAndTeam() {
+        XCTAssertEqual(
+            FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: "ABCDE12345"),
+            "anchor apple generic and identifier \"ch.ezgate.app\" and certificate leaf[subject.OU] = \"ABCDE12345\""
+        )
+    }
+
+    func testFilterIPCRequirementRejectsMissingOrMalformedTeam() {
+        XCTAssertNil(FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: nil))
+        XCTAssertNil(FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: ""))
+        XCTAssertNil(FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: "abcde12345"))
+        XCTAssertNil(FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: "ABC\" or true"))
+    }
+
     func testByteFormatterIncludesUnit() {
         let output = ByteFormatter.string(2_400_000_000)
         XCTAssertFalse(output.isEmpty)
