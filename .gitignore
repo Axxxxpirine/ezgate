@@ -17,3 +17,4 @@ xcuserdata/
 *.cer
 *.p12
 .env
+Config/Local.xcconfig

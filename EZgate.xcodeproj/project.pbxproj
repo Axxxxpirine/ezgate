@@ -150,6 +150,7 @@
 		24FB2F328C82C023F603D8C8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		25DC4AB9D3FED9097FD98301 /* SharedRuleSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedRuleSnapshot.swift; sourceTree = "<group>"; };
 		28CCC6FEA1E44C5420E138B6 /* ByteFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteFormatter.swift; sourceTree = "<group>"; };
+		2A95B764C2FBED7C89946236 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
 		34061B098B5DDFE48927127A /* TrafficLiveSortingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficLiveSortingTests.swift; sourceTree = "<group>"; };
 		35753174145562501BF0169A /* ProfileStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStoreTests.swift; sourceTree = "<group>"; };
 		38FA3A4E71F20EBBDBF1BF19 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
@@ -267,6 +268,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2BB6B768D95B6C31099201E0 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2A95B764C2FBED7C89946236 /* Signing.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		361BB3F38348CED38BFC6239 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +349,7 @@
 		9244D56CD729D565973F84C3 = {
 			isa = PBXGroup;
 			children = (
+				2BB6B768D95B6C31099201E0 /* Config */,
 				E7F9DDAA035CFA4A8DB5E25D /* EZgateApp */,
 				F22F048BE12FFF64D135CACC /* EZgateCore */,
 				C5B68DF5D346AB163EAAE2AD /* EZgateNetworkExtension */,
@@ -541,24 +551,24 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					063A9C108D48B37D8FC33EBF = {
-						DevelopmentTeam = 5FM4XV9BSQ;
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					86192973DD4C548EE1C694AA = {
-						DevelopmentTeam = 5FM4XV9BSQ;
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					D74E00C42AC2262BDF2764AE = {
-						DevelopmentTeam = 5FM4XV9BSQ;
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 063A9C108D48B37D8FC33EBF;
 					};
 					E329FA62CFAC7BFB8396F8A8 = {
-						DevelopmentTeam = 5FM4XV9BSQ;
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					F6E41BE003B8E245B7EB8503 = {
-						DevelopmentTeam = 5FM4XV9BSQ;
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -707,6 +717,7 @@
 /* Begin XCBuildConfiguration section */
 		0F940949C88F928B3C40ACB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A95B764C2FBED7C89946236 /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -741,7 +752,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 5FM4XV9BSQ;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -943,6 +953,7 @@
 		};
 		D5910EAB45CADB916C1C6A19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A95B764C2FBED7C89946236 /* Signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -977,7 +988,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 5FM4XV9BSQ;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

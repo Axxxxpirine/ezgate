@@ -1,0 +1,7 @@
+// Signing settings shared by every target.
+//
+// No Team ID is committed. To sign locally, copy Local.xcconfig.example to
+// Local.xcconfig (ignored by git) and set your own Apple Developer Team ID.
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"
