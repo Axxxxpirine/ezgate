@@ -10,7 +10,8 @@ EZgate separates user interface, policy, persistence, traffic sources, and privi
 EZgate.app
 ├── SwiftUI MenuBarExtra and Settings
 ├── AppModel (main-actor presentation state)
-├── RealTrafficProvider (App Group snapshot reader)
+├── RealTrafficProvider (XPC traffic snapshot reader)
+├── StatisticsDashboardView (Swift Charts)
 └── EZgateCore.framework
     ├── models
     ├── RuleEngine and NetworkContextMatcher
@@ -21,15 +22,18 @@ EZgate.app
 EZgateNetworkExtension.systemextension
 ├── FilterDataProvider
 ├── audit-token → signing-identifier resolver
-├── read-only shared rule snapshot
+├── XPC service (signed-client requirement)
+├── active-flow registry for immediate blocking
 └── EZgateCore.framework
 ```
 
 ## Data flow
 
-The app updates a `NetworkProfile`, persists it atomically, and publishes a versioned `SharedRuleSnapshot` to the App Group. The Content Filter reads that snapshot and calls the pure `RuleEngine` for every new flow. Missing/corrupt configuration fails open so a development defect cannot silently disconnect the Mac.
+The app updates a `NetworkProfile`, persists it atomically, and sends a versioned `SharedRuleSnapshot` to the Content Filter over XPC. The filter calls the pure `RuleEngine` for every new flow and, after a rule change, drops already-open flows of newly blocked apps. A missing or corrupt snapshot fails open so a development defect cannot silently disconnect the Mac.
 
-The signed real-data architecture extends the macOS data provider's `handle(_:)` report path. It receives `NEFilterReport` metadata and byte counters, aggregates events before storage/UI updates, and publishes compact snapshots through the shared App Group. The provider must never create a local HTTP server or write packet contents; cross-process exchange remains narrow, versioned, and local.
+The XPC listener sets a code-signing requirement on every connection: identifier `ch.ezgate.app`, Apple-issued certificate, same Team ID as the filter. The filter reads its Team ID from its own signature, so nothing team-specific is hard-coded.
+
+The data provider's `handle(_:)` report path receives `NEFilterReport` metadata and byte counters, aggregates events before storage/UI updates, and returns compact traffic snapshots to the app over the same XPC connection. The provider must never create a local HTTP server or write packet contents; cross-process exchange remains narrow, versioned, and local.
 
 ## Concurrency
 
@@ -69,7 +73,7 @@ The real provider publishes at approximately 1 Hz. Network Extension statistics 
 
 ## Error states
 
-The UI model can surface monitoring unavailable, persistence/statistics errors, and development mode. Signed onboarding must add explicit inactive, awaiting approval, denied, and active states before real mode becomes the default.
+The UI model surfaces monitoring unavailable and persistence/statistics errors. First-run onboarding installs the filter and guides the user through the macOS approval; explicit deactivation, denied, and recovery states are still planned.
 
 ## Bundle identifiers
 

@@ -8,20 +8,22 @@ Simple network control for macOS.
 
 EZgate is an open-source, native macOS menu bar utility for understanding which applications use network bandwidth and controlling whether each application may connect. It is built from scratch in Swift and SwiftUI and does not contain code, assets, wording, or proprietary behavior from commercial products.
 
-The current build contains no simulated traffic. A Network Extension system extension enforces allow/drop rules and reports real per-application byte counters to the menu-bar app through a local App Group. macOS will only activate it after valid Apple signing/provisioning and explicit user approval.
+EZgate shows real traffic only. A Network Extension system extension enforces allow/drop rules and reports per-application byte counters to the menu-bar app over a local XPC connection restricted to the signed EZgate app. macOS only activates it after valid Apple signing/provisioning and explicit user approval.
 
 ## Features
 
 - Native `MenuBarExtra` panel
 - Per-application download/upload totals and current rates
-- Allow/Block rules
+- Allow/Block rules, applied immediately to new and already-open connections
 - Normal, Hotspot, and Restrictive profiles
 - Per-profile default policy, including “block all except allowed apps”
 - Search by app name, process name, or bundle identifier
-- Sorting by total, download, upload, name, or access state
+- Live sorting by total, download, upload, name, or access state, with animated reordering
 - Pause filtering without deleting rules
 - Atomic local profile/rule persistence
-- Session and Today totals backed by SQLite
+- Network Statistics window: Today, 7 days, 30 days, or all history, traffic-over-time chart, per-application breakdown
+- Session and Today totals backed by SQLite, with a one-click reset of history and live counters
+- First-run onboarding that installs and enables the network filter
 - Wi-Fi/Ethernet/path-cost monitoring with `NWPathMonitor`
 - Launch-at-login setting using `SMAppService`
 - Real traffic only; an inactive extension produces an honest empty state
@@ -41,9 +43,11 @@ Screenshots will be added after the visual identity and signed Network Extension
 
 ## Installation
 
-There is no published binary yet. EZgate remains local by default and this repository is not automatically deployed or published.
+There is no notarized binary yet, so EZgate currently has to be built from source. Running the real filter requires a paid Apple Developer Program membership: Network Extension entitlements are not available to free accounts.
 
 ## Build from source
+
+No Team ID is committed. To sign with your own team, copy `Config/Local.xcconfig.example` to `Config/Local.xcconfig` (ignored by git) and set `DEVELOPMENT_TEAM`. Your Apple Developer account must have the Network Extension and System Extension capabilities and an App Group matching the identifiers in `project.yml`.
 
 Open `EZgate.xcodeproj` and run the `EZgate` scheme, or generate and build from Terminal:
 
@@ -64,7 +68,7 @@ xcodebuild -project EZgate.xcodeproj -scheme EZgate \
 
 ## Network Extension
 
-`EZgateNetworkExtension` is a user-space Content Filter system extension. It loads a read-only rule snapshot from the shared App Group, resolves the macOS source signing identifier from the flow audit token, and returns an allow or drop verdict. If no valid rule snapshot is available it deliberately fails open.
+`EZgateNetworkExtension` is a user-space Content Filter system extension. It receives versioned rule snapshots from the app over XPC, resolves the macOS source signing identifier from the flow audit token, and returns an allow or drop verdict. When rules change it also drops already-open connections of newly blocked apps. The XPC service only accepts the EZgate app signed by the same Apple team. If no rule snapshot has been received yet it deliberately fails open.
 
 The extension is not silently activated. A signed build must request system-extension activation and filter configuration, and the user must approve the macOS prompts. See `TECHNICAL_FEASIBILITY.md` for the exact constraints.
 
@@ -93,7 +97,8 @@ The UI, domain logic, persistence, and filtering target are separated. `RuleEngi
 - Signed activation/configuration of the system extension is not possible without an Apple Developer team and profiles.
 - SSID access depends on current macOS privacy authorization; iPhone hotspot identity cannot be guaranteed.
 - Content Filters allow or drop traffic but do not provide general bandwidth shaping.
-- Temporary rules, quotas, domain history, charts, and export are intentionally outside this MVP.
+- Rules are held in the extension's memory. After a restart, traffic is allowed until the EZgate app is running again; enable Launch at Login to keep filtering continuous.
+- Temporary rules, quotas, domain history, and export are not implemented yet.
 
 ## Roadmap
 

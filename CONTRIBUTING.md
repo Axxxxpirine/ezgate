@@ -6,7 +6,7 @@ EZgate welcomes focused contributions that preserve native macOS behavior, low r
 
 1. Install Xcode and XcodeGen.
 2. Run `xcodegen generate`.
-3. Build the `EZgate` scheme with signing disabled for UI and domain development.
+3. Build the `EZgate` scheme with signing disabled for UI and domain development. To run the real filter, copy `Config/Local.xcconfig.example` to `Config/Local.xcconfig` and set your own Team ID; never commit it.
 4. Run the unit tests before submitting changes.
 
 ## Design rules

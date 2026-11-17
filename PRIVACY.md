@@ -20,7 +20,7 @@ EZgate does not need or persist packet payloads, messages, authentication tokens
 
 ## Location
 
-Configuration and statistics are stored in the user’s Application Support container. A signed build also uses the EZgate App Group container for the rule snapshot shared with the system extension.
+Configuration and statistics are stored in the user’s Application Support container. The system extension keeps the current rule snapshot and live traffic counters in memory and exchanges them only with the signed EZgate app over local XPC.
 
 ## Retention
 
@@ -28,7 +28,7 @@ MVP statistics remain until the user deletes them in Settings or removes EZgate�
 
 ## Deletion
 
-Settings → Statistics → Delete All Statistics removes database rows. Removing the Application Support `EZgate` directory deletes configuration and statistics. A future signed uninstaller must also deactivate the system extension and remove the App Group data using supported macOS APIs.
+Settings → Statistics → Reset All Statistics removes database rows and restarts the live counters. Removing the Application Support `EZgate` directory deletes configuration and statistics. A future signed uninstaller must also deactivate the system extension and remove the App Group data using supported macOS APIs.
 
 ## Logging
 

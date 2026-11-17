@@ -4,23 +4,23 @@
 
 - least privilege
 - public Apple APIs only
-- fail open when the development rule snapshot is unavailable
+- fail open until the app has sent a rule snapshot
 - no kernel extensions
 - no SIP/Gatekeeper bypasses
 - no arbitrary shell execution from the UI
-- no unauthenticated local network endpoint
+- no network listener; the only local endpoint is an XPC service that accepts the EZgate app signed by the same Apple team
 - no downloaded executable rules
 - no packet-content persistence
 
-The Content Filter runs in user space as a System Extension. Its data provider receives only the code needed to identify a flow and make a deterministic rule decision. The shared rules file is atomic and versioned.
+The Content Filter runs in user space as a System Extension. Its data provider receives only the code needed to identify a flow and make a deterministic rule decision. Rule snapshots are versioned, and malformed ones are rejected. Every XPC connection to the filter must satisfy a code-signing requirement pinning the `ch.ezgate.app` identifier and the filter's own Team ID; unsigned or foreign processes cannot change rules, read traffic, or reset counters.
 
 ## Sensitive material
 
-Certificates, private keys, provisioning profiles, Team-specific secrets, tokens, `.env` files, and notarization credentials must never be committed. `.gitignore` excludes common signing artifacts, but contributors remain responsible for reviewing staged changes.
+Certificates, private keys, provisioning profiles, Team-specific secrets, tokens, `.env` files, and notarization credentials must never be committed. Team IDs belong in the ignored `Config/Local.xcconfig`. `.gitignore` excludes common signing artifacts, but contributors remain responsible for reviewing staged changes.
 
 ## Reporting a vulnerability
 
-Until a public security address exists, open a minimal GitHub security advisory after the repository is published. Do not include personal traffic metadata, packet captures, credentials, or exploitable details in a public issue.
+Report vulnerabilities privately through GitHub: **Security → Report a vulnerability** on this repository. Do not include personal traffic metadata, packet captures, credentials, or exploitable details in a public issue.
 
 Reports should identify the affected commit/version, macOS version, reproduction prerequisites, impact, and a safe proof of concept. Maintainers should acknowledge reports promptly and coordinate disclosure after a fix is available.
 

@@ -13,25 +13,28 @@
 - NWPath network-context monitor
 - automatic profile application from configured network signatures
 - Content Filter system-extension target and audit-token signing resolver
+- signed system-extension activation and first-run onboarding
+- XPC bridge between app and filter, restricted to the signed EZgate app
+- immediate blocking of already-open connections after a rule change
+- Network Statistics window with periods, chart, and per-app breakdown
+- reset of history and live counters
 - core unit test suite and required project documentation
 
-## Next: signed real-network milestone
+## Next: public release
 
-- add system-extension activation coordinator and explicit onboarding states
-- configure `NEFilterManager` with user-visible error handling
-- validate the implemented report aggregation and App Group snapshots on a provisioned machine
-- test allow/drop against new and established TCP/UDP flows on a signed development machine
+- Developer ID signing, notarization, and a downloadable release
+- persist rules inside the extension so filtering survives a restart before the app launches
+- explicit deactivation, denied, and recovery states in the UI
 - resolve app names, executable URLs, icons, PIDs, and helper groups on the appropriate side
+- final app/menu-bar icon and screenshots
 
 ## Next: complete MVP
 
 - permission-aware SSID mapping UI
 - robust today/session rollups and cleanup/retention
-- signed onboarding, deactivation, and recovery paths
 - UI automation for menu search, rule toggle, profile change, and Settings
 - String Catalog with English source strings and French/German/Italian readiness
 - performance validation at 100 processes and 1,000 flows
-- final app/menu-bar icon and screenshots
 
 ## Later
 

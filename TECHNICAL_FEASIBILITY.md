@@ -4,7 +4,7 @@ Verified against Apple documentation and the macOS 26.5 SDK on 12 August 2026. A
 
 ## Executive decision
 
-EZgate should use a Network Extension Content Filter packaged as a macOS System Extension. `NEFilterDataProvider` is the public API that can make per-flow allow/drop decisions without a legacy kernel extension. `NWPathMonitor` supplies network-context changes. An App Group carries immutable rule snapshots to the data provider and will carry compact traffic snapshots back to the app. SQLite stores statistics in the app.
+EZgate should use a Network Extension Content Filter packaged as a macOS System Extension. `NEFilterDataProvider` is the public API that can make per-flow allow/drop decisions without a legacy kernel extension. `NWPathMonitor` supplies network-context changes. A local XPC service, restricted by code-signing requirement to the EZgate app, carries versioned rule snapshots to the data provider and compact traffic snapshots back to the app. SQLite stores statistics in the app.
 
 The app can build without signing, but its traffic view remains empty. Real filtering requires an Apple Developer team, matching provisioning profiles, system-extension activation, filter configuration, and explicit user approval.
 
@@ -24,7 +24,7 @@ The implemented resolver passes the app audit token to Security.framework (`SecC
 
 Yes. `NEFilterReport.bytesInboundCount` and `bytesOutboundCount` expose byte counts. The closed-flow report contains final counts. A verdict can request statistics reports using `statisticsReportFrequency`; `.medium` is documented as approximately once per second, matching the UI target.
 
-This is preferable to peeking at all payload bytes. Peeking would increase overhead and expose content unnecessarily. On macOS, the data provider itself receives these reports through `handle(_:)`; a separate control provider is not required merely to collect counters. The implemented accumulator publishes compact, atomic App Group snapshots that `RealTrafficProvider` reads at one-second cadence.
+This is preferable to peeking at all payload bytes. Peeking would increase overhead and expose content unnecessarily. On macOS, the data provider itself receives these reports through `handle(_:)`; a separate control provider is not required merely to collect counters. The implemented accumulator returns compact snapshots over XPC that `RealTrafficProvider` requests at one-second cadence.
 
 ## 4. Can data be aggregated by bundle identifier?
 
@@ -59,7 +59,7 @@ Yes. TN3134 states that a macOS Content Filter packaged as a System Extension su
 - user approval of the system extension/content filter
 - no assumption that Xcode automatically fixes mismatched exported entitlements
 
-No certificate, profile, secret, or Team ID is committed.
+No certificate, profile, secret, or Team ID is committed. Each developer sets their Team ID in the ignored `Config/Local.xcconfig`.
 
 ## 9. How does local development differ from distribution?
 
@@ -77,7 +77,7 @@ App Store distribution: uses App Store profiles and the standard entitlement val
 - It cannot modify packet payloads.
 - A precise iPhone hotspot label is not guaranteed. `NWPath.isExpensive` is a useful signal, not proof of a specific hotspot. SSID access is privacy-gated and may be unavailable.
 - Bundle/display identity may be unavailable for some system/delegated flows; audit tokens must be handled conservatively.
-- Existing established connections may not instantly reflect a changed new-flow policy unless the provider updates or terminates those flows using supported APIs.
+- Existing connections do not see a changed new-flow policy by themselves. EZgate tracks open socket flows and drops those of newly blocked apps with `NEFilterDataProvider.update(_:using:for:)` when rules change.
 - Full URLs inside encrypted traffic are not generally visible to a traditional Content Filter. macOS 26 URL Filter is a separate API and not required for this MVP.
 - Content/payload logging is unnecessary for EZgate and intentionally excluded. Although the macOS system-extension data provider does not have the same sandbox restriction described for iOS filter data providers, all shared data should remain minimal and scoped to the App Group.
 
