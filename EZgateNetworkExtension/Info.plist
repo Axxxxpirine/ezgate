@@ -17,15 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>SYSX</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.15</string>
+	<string>0.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>$(EZGATE_FILTER_BUILD)</string>
 	<key>NSSystemExtensionUsageDescription</key>
 	<string>EZgate installs a local network filter to show which applications use the network and enforce your Allow or Block rules.</string>
 	<key>NetworkExtension</key>
 	<dict>
 		<key>NEMachServiceName</key>
-		<string>group.ch.ezgate.shared.filter</string>
+		<string>group.ch.ezgate.shared.filter.$(EZGATE_FILTER_BUILD)</string>
 		<key>NEProviderClasses</key>
 		<dict>
 			<key>com.apple.networkextension.filter-data</key>

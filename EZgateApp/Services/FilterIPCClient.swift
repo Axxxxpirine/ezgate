@@ -65,12 +65,22 @@ final class FilterIPCClient: @unchecked Sendable {
         } as? any FilterIPCProtocol
     }
 
+    /// The service name declared by the filter embedded in this app bundle.
+    private static let machServiceName: String = {
+        let infoURL = Bundle.main.bundleURL.appending(
+            path: "Contents/Library/SystemExtensions/ch.ezgate.app.network-extension.systemextension/Contents/Info.plist"
+        )
+        let info = NSDictionary(contentsOf: infoURL) as? [String: Any]
+        return FilterIPCConfiguration.machServiceName(fromInfoDictionary: info)
+            ?? FilterIPCConfiguration.machServiceNamePrefix
+    }()
+
     private func activeConnection() -> NSXPCConnection? {
         lock.lock()
         defer { lock.unlock() }
         if let connection { return connection }
         let newConnection = NSXPCConnection(
-            machServiceName: FilterIPCConfiguration.machServiceName,
+            machServiceName: Self.machServiceName,
             options: .privileged
         )
         newConnection.remoteObjectInterface = NSXPCInterface(with: FilterIPCProtocol.self)

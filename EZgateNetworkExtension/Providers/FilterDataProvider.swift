@@ -16,7 +16,8 @@ final class FilterDataProvider: NEFilterDataProvider {
 
     override func startFilter(completionHandler: @escaping ((any Error)?) -> Void) {
         ipcServer = FilterIPCServer(
-            machServiceName: FilterIPCConfiguration.machServiceName,
+            machServiceName: FilterIPCConfiguration.machServiceName(fromInfoDictionary: Bundle.main.infoDictionary)
+                ?? FilterIPCConfiguration.machServiceNamePrefix,
             ruleState: ruleState,
             trafficAccumulator: trafficAccumulator,
             rulesDidChange: { [weak self] snapshot in

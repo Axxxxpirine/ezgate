@@ -9,6 +9,13 @@ final class UtilityTests: XCTestCase {
         )
     }
 
+    func testMachServiceNameIsReadFromExtensionInfo() {
+        let info: [String: Any] = ["NetworkExtension": ["NEMachServiceName": "group.ch.ezgate.shared.filter.18"]]
+        XCTAssertEqual(FilterIPCConfiguration.machServiceName(fromInfoDictionary: info), "group.ch.ezgate.shared.filter.18")
+        XCTAssertNil(FilterIPCConfiguration.machServiceName(fromInfoDictionary: nil))
+        XCTAssertNil(FilterIPCConfiguration.machServiceName(fromInfoDictionary: ["NetworkExtension": ["NEMachServiceName": "other"]]))
+    }
+
     func testFilterIPCRequirementRejectsMissingOrMalformedTeam() {
         XCTAssertNil(FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: nil))
         XCTAssertNil(FilterIPCConfiguration.clientCodeSigningRequirement(teamIdentifier: ""))
