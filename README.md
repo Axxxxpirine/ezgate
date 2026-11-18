@@ -31,7 +31,21 @@ EZgate shows real traffic only. A Network Extension system extension enforces al
 
 ## Screenshots
 
-Screenshots are coming with the next update.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/menu-dark.png">
+    <img src="docs/screenshots/menu-light.png" alt="EZgate menu bar panel listing applications with their traffic, live rates, and Allow/Block toggles" width="420">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/statistics-dark.png">
+    <img src="docs/screenshots/statistics-light.png" alt="EZgate Network Statistics window with totals, a seven-day traffic chart, and a per-application table" width="900">
+  </picture>
+</p>
+
+<p align="center"><sub>Rendered from the app's own views with demo data.</sub></p>
 
 ## Installation
 
