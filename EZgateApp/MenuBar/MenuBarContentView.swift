@@ -179,7 +179,7 @@ struct MenuBarContentView: View {
         guard context.isAvailable else { return "Network unavailable" }
         let name = context.interfaceName.map { " · \($0)" } ?? ""
         let cost = context.isExpensive ? " · Expensive" : ""
-        return context.interface.rawValue.capitalized + name + cost
+        return context.interface.displayName + name + cost
     }
 }
 

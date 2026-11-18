@@ -40,4 +40,10 @@ final class UtilityTests: XCTestCase {
         let context = NetworkContext(interface: .wifi, isExpensive: true)
         XCTAssertEqual(NetworkContextMatcher().matchingProfile(in: [hotspot], for: context)?.id, hotspot.id)
     }
+
+    func testInterfaceDisplayNamesAreHumanReadable() {
+        XCTAssertEqual(NetworkInterfaceKind.wifi.displayName, "Wi-Fi")
+        XCTAssertEqual(NetworkInterfaceKind.ethernet.displayName, "Ethernet")
+        XCTAssertEqual(NetworkInterfaceKind.unavailable.displayName, "Unavailable")
+    }
 }

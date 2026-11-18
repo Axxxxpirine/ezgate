@@ -6,6 +6,16 @@ public enum NetworkInterfaceKind: String, Codable, Sendable {
     case wired
     case other
     case unavailable
+
+    public var displayName: String {
+        switch self {
+        case .wifi: "Wi-Fi"
+        case .ethernet: "Ethernet"
+        case .wired: "Wired"
+        case .other: "Other"
+        case .unavailable: "Unavailable"
+        }
+    }
 }
 
 public struct NetworkContext: Codable, Equatable, Sendable {
