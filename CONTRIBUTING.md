@@ -29,7 +29,7 @@ Contributions are made under MIT. Do not paste GPL-incompatible code into the re
 
 ## Releasing (maintainers)
 
-1. Bump `CFBundleShortVersionString` of both targets and `EZGATE_FILTER_BUILD` in `project.yml`, then run `xcodegen generate`. macOS only replaces an installed filter with a higher build, and the build number is also part of the XPC service name so an update works without a restart.
+1. Bump the app's `CFBundleShortVersionString` and `CFBundleVersion` in `project.yml`. When the filter changes, also bump its short version and `EZGATE_FILTER_BUILD`: macOS only replaces an installed filter with a higher build, and the build number is also part of the XPC service name so an update works without a restart. Then run `xcodegen generate`.
 2. Archive the `EZgate` scheme in Release, export it with method `developer-id` and destination `upload` to notarize it, then run `xcodebuild -exportNotarizedApp`.
 3. Check `spctl -a -vv -t exec EZgate.app` reports `Notarized Developer ID`, zip the app with `ditto -c -k --keepParent`, and attach it to a GitHub release with its SHA-256.
 
